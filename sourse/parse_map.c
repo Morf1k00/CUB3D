@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/08/27 15:52:02 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/08/27 17:01:13 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void parse_map(t_data *dat)
 	}
 	dat->map_height = i;
 }
-
+ 
 void parse_wigth(t_data *dat)
 {
 	int i;
