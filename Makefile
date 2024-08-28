@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/26 16:32:54 by rkrechun          #+#    #+#              #
-#    Updated: 2024/08/28 13:48:19 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/08/28 15:00:08 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,8 +14,8 @@
 NAME = cub3D
 
 # Compiler and flags
-CC = gcc
-FLAGS = -Wall -Wextra -I$(MLX_DIR) -I$(HEADER_DIR)
+CC = gcc  -g -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -I$(MLX_DIR) -I$(HEADER_DIR)
 RM = rm -rf
 
 # Header files
@@ -24,7 +24,7 @@ HEADER_DIR = libc/
 HEADER = $(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # Source files
-MPATH_SRCS = cub3d.c gnl.c parse_map.c
+MPATH_SRCS = cub3d.c get_next_line.c parse_map.c utils.c
 MPATH_DIR = sourse/
 MPATH = $(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M = $(MPATH:.c=.o)
