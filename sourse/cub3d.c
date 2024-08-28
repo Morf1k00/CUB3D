@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 16:32:52 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/08/27 15:52:53 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:46:50 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ int main(int argc, char **argv)
 	if (argc < 3)
 		printf("Error\nNot enough arguments\n");
 	dat = calloc(1, sizeof(t_data));
-	dat->map2d = get_next_line(argv[1]);
+	open_file(argv[1], dat);
 	parse_map(dat);
-	parce_wigth(dat);
+	parse_wigth(dat);
 	player_position(dat);
 	start_game_loop(dat);
 }

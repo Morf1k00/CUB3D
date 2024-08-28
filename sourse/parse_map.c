@@ -6,11 +6,33 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/08/27 17:01:13 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:44:15 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libc/cub3d.h"
+
+void open_file(char *map_path, t_data *dat)
+{
+	int fd;
+	char *line;
+	int i;
+
+	i = 0;
+	fd = open(map_path, O_RDONLY);
+	if (fd < 0)
+	{
+		printf("Error\nCan't open file\n");
+		return ;
+	}
+	while (line)
+	{
+		dat->map2d[i] = get_next_line(fd);
+		i++;
+	}
+	dat->map2d[i] = line;
+	close(fd);
+}
 
 void parse_map(t_data *dat)
 {

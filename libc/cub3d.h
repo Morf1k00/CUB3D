@@ -6,15 +6,20 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 16:32:49 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/08/27 15:40:46 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/08/28 13:45:50 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include <stdio.h>
 # include <stdlib.h>
 # include "../mlx/mlx.h"
 # include <math.h>
 # include <string.h>
+# include <fcntl.h>
 
 typedef struct s_data
 {
@@ -34,3 +39,9 @@ typedef struct s_mlx
 }				t_mlx;
 
 char	*get_next_line(int fd);
+void open_file(char *map_path, t_data *dat);
+void parse_map(t_data *dat);
+void parse_wigth(t_data *dat);
+void player_position(t_data *dat);
+
+#endif
