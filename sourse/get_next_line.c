@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:59:24 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/08/28 14:59:54 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:29:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,6 @@ char	*get_next_line(int fd)
 	buf = NULL;
 	if (!line)
 		return (NULL);
-	backup = extract(line); 
+	backup = extract(line);
 	return (line);
 }

@@ -6,17 +6,17 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/08/28 17:14:14 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/08/28 17:33:27 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libc/cub3d.h"
 
-void count_line(char *map_path, t_data *dat)
+void	count_line(char *map_path, t_data *dat)
 {
-	int fd;
-	char *line;
-	int i;
+	int		fd;
+	char	*line;
+	int		i;
 
 	i = 0;
 	fd = open(map_path, O_RDONLY);
@@ -37,9 +37,9 @@ void count_line(char *map_path, t_data *dat)
 	printf("%d\n", i);
 }
 
-void count_width(char *line, t_data *dat)
+void	count_width(char *line, t_data *dat)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (line[i])
@@ -48,11 +48,11 @@ void count_width(char *line, t_data *dat)
 		dat->map_width = i;
 }
 
-void open_file(char *map_path, t_data *dat)
+void	open_file(char *map_path, t_data *dat)
 {
-	int fd;
-	char *line;
-	int i;
+	int		fd;
+	char	*line;
+	int		i;
 
 	i = 0;
 	count_line(map_path, dat);
@@ -67,7 +67,7 @@ void open_file(char *map_path, t_data *dat)
 	while (line)
 	{
 		count_width(line, dat);
-	printf("map_width = %d\n", dat->map_width);
+		printf("map_width = %d\n", dat->map_width);
 		dat->map2d[i] = ft_strdup(line);
 		i++;
 		free(line);
@@ -76,10 +76,10 @@ void open_file(char *map_path, t_data *dat)
 	close(fd);
 }
 
-void maps_checker(t_data *dat)
+void	maps_checker(t_data *dat)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < dat->map_height)
@@ -98,10 +98,10 @@ void maps_checker(t_data *dat)
 	}
 }
 
-void player_position(t_data *dat)
+void	player_position(t_data *dat)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < dat->map_height)
@@ -109,7 +109,8 @@ void player_position(t_data *dat)
 		j = 0;
 		while (dat->map2d[i][j])
 		{
-			if (dat->map2d[i][j] == 'N' || dat->map2d[i][j] == 'S' || dat->map2d[i][j] == 'W' || dat->map2d[i][j] == 'E')
+			if (dat->map2d[i][j] == 'N' || dat->map2d[i][j] == 'S'
+					|| dat->map2d[i][j] == 'W' || dat->map2d[i][j] == 'E')
 			{
 				dat->p_x = j;
 				dat->p_y = i;
