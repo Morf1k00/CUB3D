@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/08/26 16:32:54 by rkrechun          #+#    #+#              #
-#    Updated: 2024/08/28 17:31:11 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/09/02 17:56:00 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,10 +24,13 @@ HEADER_DIR = libc/
 HEADER = $(addprefix $(HEADER_DIR), $(HEADER_SRCS))
 
 # Source files
-MPATH_SRCS = cub3d.c get_next_line.c parse_map.c utils.c utils2.c
+MPATH_SRCS = cub3d.c get_next_line.c parse_map.c utils.c utils2.c maps_render.c
 MPATH_DIR = sourse/
 MPATH = $(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M = $(MPATH:.c=.o)
+
+# MLX library path
+MLX_DIR = mlx
 
 # MLX library linking flags (adjust if needed)
 MLX_LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm

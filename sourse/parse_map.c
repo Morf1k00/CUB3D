@@ -6,13 +6,25 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/08/28 17:33:27 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/09/02 18:04:48 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libc/cub3d.h"
 
-void	count_line(char *map_path, t_data *dat)
+void	count_width(char *line, t_game *dat)
+{
+	int	i;
+
+	i = 0;
+	while (line[i])
+		i++;
+	if (i > dat->map_width)
+		dat->map_width = i;
+	
+}
+
+void	count_line(char *map_path, t_game *dat)
 {
 	int		fd;
 	char	*line;
@@ -28,31 +40,54 @@ void	count_line(char *map_path, t_data *dat)
 	line = get_next_line(fd);
 	while (line)
 	{
+		count_width(line, dat);
 		i++;
 		free(line);
 		line = get_next_line(fd);
 	}
 	close(fd);
 	dat->map_height = i;
-	printf("%d\n", i);
 }
 
-void	count_width(char *line, t_data *dat)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	int	i;
+	size_t			i;
+	unsigned char	*str;
 
 	i = 0;
-	while (line[i])
+	str = (unsigned char *)b;
+	while (i < len)
+	{
+		str[i] = (unsigned char)c;
 		i++;
-	if (i > dat->map_width)
-		dat->map_width = i;
+	}
+	return (b);
 }
 
-void	open_file(char *map_path, t_data *dat)
+char *line_bigger(char *line, int width)
+{
+    int old_len;
+    int padding_len;
+    char *new_line;
+
+	old_len = ft_strlen(line);
+	padding_len = width - old_len;
+	new_line = malloc(sizeof(char) * (width + 1));
+	if (!new_line)
+		return (NULL);
+	strncpy(new_line, line, old_len - 1);
+	memset(new_line + old_len - 1, '0', padding_len);
+	new_line[width - 1] = '\n';
+	new_line[width] = '\0';
+	return (new_line);
+}
+
+void	open_file(char *map_path, t_game *dat)
 {
 	int		fd;
 	char	*line;
 	int		i;
+	char *new_line;
 
 	i = 0;
 	count_line(map_path, dat);
@@ -66,17 +101,23 @@ void	open_file(char *map_path, t_data *dat)
 	line = get_next_line(fd);
 	while (line)
 	{
-		count_width(line, dat);
-		printf("map_width = %d\n", dat->map_width);
-		dat->map2d[i] = ft_strdup(line);
+		if (ft_strlen(line) < dat->map_width)
+		{	
+			new_line = line_bigger(line, dat->map_width);
+			dat->map2d[i] = ft_strdup(new_line);
+			free(new_line);
+		}
+		else
+			dat->map2d[i] = ft_strdup(line);
 		i++;
 		free(line);
 		line = get_next_line(fd);
 	}
+	dat->map2d[i] = NULL;
 	close(fd);
 }
 
-void	maps_checker(t_data *dat)
+void	maps_checker(t_game *dat)
 {
 	int	i;
 	int	j;
@@ -98,13 +139,13 @@ void	maps_checker(t_data *dat)
 	}
 }
 
-void	player_position(t_data *dat)
+void	player_position(t_game *dat)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < dat->map_height)
+	while (i <= dat->map_height)
 	{
 		j = 0;
 		while (dat->map2d[i][j])
