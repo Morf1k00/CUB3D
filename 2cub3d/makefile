@@ -1,12 +1,12 @@
 # **************************************************************************** #
 #                                                                              #
 #                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
+#    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/08/26 16:32:54 by rkrechun          #+#    #+#              #
-#    Updated: 2024/09/04 14:02:49 by rkrechun         ###   ########.fr        #
+#    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
+#    Updated: 2024/09/11 15:32:11 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,12 +21,12 @@ RM = rm -rf
 # Header files
 HEADER_SRCS = cub3d.h
 HEADER_DIR = libc/
-HEADER = $(addprefix $(HEADER_DIR), $(HEADER_SRCS))
+HEADER =  $(HEADER_SRCS)
 
 # Source files
-MPATH_SRCS = cub3d.c get_next_line.c parse_map.c utils.c utils2.c maps_render.c raycast.c
+MPATH_SRCS = cub3d.c keys.c render.c textures.c
 MPATH_DIR = sourse/
-MPATH = $(addprefix $(MPATH_DIR), $(MPATH_SRCS))
+MPATH =  $(MPATH_SRCS)
 OBJ_M = $(MPATH:.c=.o)
 
 # MLX library path

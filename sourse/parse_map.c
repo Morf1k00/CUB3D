@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/09/02 18:04:48 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/09/04 14:09:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,6 @@ void	maps_checker(t_game *dat)
 			}
 			j++;
 		}
-		printf("%s", dat->map2d[i]);
 		i++;
 	}
 }
@@ -145,7 +144,7 @@ void	player_position(t_game *dat)
 	int	j;
 
 	i = 0;
-	while (i <= dat->map_height)
+	while (i < dat->map_height)
 	{
 		j = 0;
 		while (dat->map2d[i][j])
@@ -153,8 +152,8 @@ void	player_position(t_game *dat)
 			if (dat->map2d[i][j] == 'N' || dat->map2d[i][j] == 'S'
 					|| dat->map2d[i][j] == 'W' || dat->map2d[i][j] == 'E')
 			{
-				dat->p_x = j;
-				dat->p_y = i;
+				dat->ray->player_x = j;
+				dat->ray->player_y = i;
 				return ;
 			}
 			j++;
