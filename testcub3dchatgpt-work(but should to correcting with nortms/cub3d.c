@@ -184,27 +184,71 @@ int handle_key_press(int keycode, t_data *data) {
         if (player_angle >= 360) player_angle -= 360;  // Обертка если нужно
         render(data);  // Перерисовать сцену после поворота
     }
-    if (keycode == 65362) {  // Верхняя стрелка (движение вперед)
-        // Рассчитать вектор направления на основе player_angle
+    // if (keycode == 65362) {  // Верхняя стрелка (движение вперед)
+    //     // Рассчитать вектор направления на основе player_angle
+    //     float move_x = cos(player_angle * M_PI / 180.0) * MOVE_SPEED;
+    //     float move_y = sin(player_angle * M_PI / 180.0) * MOVE_SPEED;
+    //     // Проверить столкновение перед движением
+    //     if (map[(int)(player_y + move_y)][(int)(player_x + move_x)] == 0) {
+    //         player_x += move_x;
+    //         player_y += move_y;
+    //     }
+    //     render(data);  // Перерисовать сцену после движения
+    // }
+    // if (keycode == 65364) {  // Нижняя стрелка (движение назад)
+    //     // Рассчитать вектор направления на основе player_angle
+    //     float move_x = cos(player_angle * M_PI / 180.0) * MOVE_SPEED;
+    //     float move_y = sin(player_angle * M_PI / 180.0) * MOVE_SPEED;
+    //     // Проверить столкновение перед движением
+    //     if (map[(int)(player_y - move_y)][(int)(player_x - move_x)] == 0) {
+    //         player_x -= move_x;
+    //         player_y -= move_y;
+    //     }
+    //     render(data);  // Перерисовать сцену после движения
+    // }
+
+    // W: перемещение вперед
+    if (keycode == 119) {
         float move_x = cos(player_angle * M_PI / 180.0) * MOVE_SPEED;
         float move_y = sin(player_angle * M_PI / 180.0) * MOVE_SPEED;
-        // Проверить столкновение перед движением
         if (map[(int)(player_y + move_y)][(int)(player_x + move_x)] == 0) {
             player_x += move_x;
             player_y += move_y;
         }
-        render(data);  // Перерисовать сцену после движения
+        render(data);  // Перерисовать сцену
     }
-    if (keycode == 65364) {  // Нижняя стрелка (движение назад)
-        // Рассчитать вектор направления на основе player_angle
+
+    // A: перемещение влево (стрейф)
+    if (keycode == 97) {
+        float move_x = cos((player_angle - 90) * M_PI / 180.0) * MOVE_SPEED;
+        float move_y = sin((player_angle - 90) * M_PI / 180.0) * MOVE_SPEED;
+        if (map[(int)(player_y + move_y)][(int)(player_x + move_x)] == 0) {
+            player_x += move_x;
+            player_y += move_y;
+        }
+        render(data);  // Перерисовать сцену
+    }
+
+    // S: перемещение назад
+    if (keycode == 115) {
         float move_x = cos(player_angle * M_PI / 180.0) * MOVE_SPEED;
         float move_y = sin(player_angle * M_PI / 180.0) * MOVE_SPEED;
-        // Проверить столкновение перед движением
         if (map[(int)(player_y - move_y)][(int)(player_x - move_x)] == 0) {
             player_x -= move_x;
             player_y -= move_y;
         }
-        render(data);  // Перерисовать сцену после движения
+        render(data);  // Перерисовать сцену
+    }
+
+    // D: перемещение вправо (стрейф)
+    if (keycode == 100) {
+        float move_x = cos((player_angle + 90) * M_PI / 180.0) * MOVE_SPEED;
+        float move_y = sin((player_angle + 90) * M_PI / 180.0) * MOVE_SPEED;
+        if (map[(int)(player_y + move_y)][(int)(player_x + move_x)] == 0) {
+            player_x += move_x;
+            player_y += move_y;
+        }
+        render(data);  // Перерисовать сцену
     }
     return 0;
 }

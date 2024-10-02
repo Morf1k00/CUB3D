@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/09/04 14:09:51 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:47:21 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	maps_checker(t_game *dat)
 		j = 0;
 		while (dat->map2d[i][j])
 		{
-			if (dat->map2d[i][j] == ' ')
+			if (dat->map2d[i][j] == ' ' || dat->map2d[i][j] == '\t')
 			{
 				dat->map2d[i][j] = '0';
 			}

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 16:32:52 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/02 14:50:54 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/02 15:50:41 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,14 @@ int	key_cross(t_game *data)
 // 	mlx_loop(game.mlx);
 // }
 
+int handle_key_press(int keycode, t_game *data) 
+{
+    if (keycode == 65307) {  // Клавиша Escape на Linux
+        mlx_destroy_window(data->mlx, data->win);
+        exit(0);
+    }
+    return 0;
+}
 int main(int argc, char **argv)
 {
     t_game game;
@@ -80,10 +88,12 @@ int main(int argc, char **argv)
     game.win = mlx_new_window(game.mlx, 800, 600, "cub3D");
     image_in_map(&game);
     map_paint(&game);
+    // while(game.map2d++)
+    //     printf("%s", *game.map2d);
     //mlx_loop_hook(game.mlx, raycasting, &game);
     mlx_hook(game.win, 17, 0, key_cross, &game);
+    mlx_hook(game.win, 2, 1L << 0, handle_key_press, &game);
     mlx_loop(game.mlx);
-
     // Cleanup
     free(game.ray);
     // Add any other cleanup necessary for your game (freeing textures, closing files, etc.)
