@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:56:33 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/09/11 16:10:06 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:29:35 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 void raydir_x(float ray_dir_x, int *step_x, float *side_dist_x, int *map_x, t_game *game)
 {
 	float delta_dist_x;
-	
 	
     delta_dist_x = fabs(1 / ray_dir_x);
 	if (ray_dir_x < 0) 
@@ -83,9 +82,17 @@ float	perform_dda(float ray_dir_x, float ray_dir_y, t_game *game, int *side)
 	while (!hit)
 	{
 		if (side_dist_x < side_dist_y) 
-			if_side_x(&side_dist_x, &delta_dist_x, &map_x, &step_x, &side);
-		else 
-			if_side_y(&side_dist_y, &delta_dist_y, &map_y, &step_y, &side);
+		{
+			side_dist_y += delta_dist_y;
+			map_y += step_y;
+			*side = 1;
+		}	
+		else
+		{
+			side_dist_y += delta_dist_y;
+			map_y += step_y;
+			*side = 1;
+		}
 		if (game->map->map[map_y][map_x] == 1) 
 			hit = 1;
 	}

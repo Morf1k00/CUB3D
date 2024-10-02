@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/26 16:32:52 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/09/04 15:45:17 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:50:54 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ int main(int argc, char **argv)
     game.win = mlx_new_window(game.mlx, 800, 600, "cub3D");
     image_in_map(&game);
     map_paint(&game);
-    mlx_loop_hook(game.mlx, raycasting, &game);
+    //mlx_loop_hook(game.mlx, raycasting, &game);
     mlx_hook(game.win, 17, 0, key_cross, &game);
     mlx_loop(game.mlx);
 

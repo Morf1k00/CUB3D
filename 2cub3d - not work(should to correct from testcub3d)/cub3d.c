@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 13:57:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/09/11 14:14:17 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/02 14:24:42 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,18 @@ int main() {
     }};
     
     t_game game = { &mlx_data, &wall_texture, &player, &map };
-
     // Initialize MLX
     mlx_data.mlx = mlx_init();
     mlx_data.win = mlx_new_window(mlx_data.mlx, WIDTH, HEIGHT, "Cub3D");
     mlx_data.img = mlx_new_image(mlx_data.mlx, WIDTH, HEIGHT);
     mlx_data.data = mlx_get_data_addr(mlx_data.img, &mlx_data.bpp, &mlx_data.size_line, &mlx_data.endian);
-
     // Load textures
     load_texture(&mlx_data, &wall_texture, "wall.xpm");
-
     // Set hooks
     mlx_hook(mlx_data.win, 2, 1L << 0, handle_input, &game);
     mlx_loop_hook(mlx_data.mlx, game_loop, &game);
-
     // Start the game loop
     mlx_loop(mlx_data.mlx);
-
     // Clean up
     mlx_destroy_image(mlx_data.mlx, mlx_data.img);
     mlx_destroy_window(mlx_data.mlx, mlx_data.win);
