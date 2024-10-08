@@ -6,27 +6,31 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/08 15:36:26 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:43:14 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-// Функция для загрузки текстуры
-void	load_texture(t_data *data, t_texture *texture, const char *file_path)
+void	load_textures(t_data *data)
 {
-	texture->img = mlx_xpm_file_to_image(data->mlx, (char *)file_path,
-			&texture->width, &texture->height);
-	if (!texture->img)
+	int	width;
+	int	height;
+
+	data->wall_texture.img = mlx_xpm_file_to_image(data->mlx,
+			"wall1.xpm", &width, &height);
+	if (!data->wall_texture.img)
 	{
-		fprintf(stderr, "Failed to load texture: %s\n", file_path);
+		printf("Error loading texture file.\n");
 		exit(EXIT_FAILURE);
 	}
-	texture->data = mlx_get_data_addr(texture->img, &texture->bpp,
-			&texture->size_line, &texture->endian);
+	data->wall_texture.width = width;
+	data->wall_texture.height = height;
+	data->wall_texture.data = mlx_get_data_addr(data->wall_texture.img,
+			&data->wall_texture.bpp, &data->wall_texture.size_line,
+			&data->wall_texture.endian);
 }
 
-// Функция для очистки экрана определенным цветом
 void	clear_screen(t_data *data, int color)
 {
 	int	x;
@@ -46,7 +50,6 @@ void	clear_screen(t_data *data, int color)
 	}
 }
 
-// Функция для непрерывного рендеринга и обработки событий
 int	game_loop(t_data *data)
 {
 	render(data);
@@ -103,7 +106,7 @@ int	main(int arc, char **arv)
 	data.player_x = 2.5;
 	data.player_y = 1.5;
 	data.player_angle = 90;
-	load_texture(&data, &data.wall_texture, "wall.xpm");
+	load_textures(&data);
 	mlx_hook(data.win, 2, 1L << 0, handle_key_press, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);

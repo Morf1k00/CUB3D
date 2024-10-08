@@ -5,96 +5,120 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/08 14:14:09 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/08 14:26:24 by rkrechun         ###   ########.fr       */
+/*   Created: 2024/10/08 16:58:46 by rkrechun          #+#    #+#             */
+/*   Updated: 2024/10/08 17:26:46 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void render(t_data *data)
+void	ray_init(t_data *data)
 {
-    clear_screen(data, FLOOR_COLOR); // Очистить экран (черный пол)
+	data->render.ray_angle = data->player_angle - (FOV / 2)
+		+ (data->render.x * (FOV / (float)WIDTH));
+	data->render.ray_angle_rad = data->render.ray_angle * M_PI / 180.0;
+	data->render.ray_dir_x = cos(data->render.ray_angle_rad);
+	data->render.ray_dir_y = sin(data->render.ray_angle_rad);
+	data->render.delta_dist_x = fabs(1 / data->render.ray_dir_x);
+	data->render.delta_dist_y = fabs(1 / data->render.ray_dir_y);
+	data->render.map_x = data->player_x;
+	data->render.map_y = data->player_y;
+	data->render.hit = 0;
+}
 
-    int x = 0;
-    while (x < WIDTH)
-    {
-        // Рассчитать угол луча относительно игрока
-        float ray_angle = data->player_angle - (FOV / 2) + (x * (FOV / (float)WIDTH));
-        // Преобразовать ray_angle из градусов в радианы
-        float ray_angle_rad = ray_angle * M_PI / 180.0;
-        // Направление луча
-        float ray_dir_x = cos(ray_angle_rad);
-        float ray_dir_y = sin(ray_angle_rad);
-        // Переменные для шага и расчета расстояний
-        float delta_dist_x = fabs(1 / ray_dir_x);
-        float delta_dist_y = fabs(1 / ray_dir_y);
-        int map_x = data->player_x;
-        int map_y = data->player_y;
-        float side_dist_x;
-        float side_dist_y;
-        int step_x;
-        int step_y;
-        int hit = 0;
-        int side; // 0 для вертикальной стены, 1 для горизонтальной стены
-        // Рассчитать шаг и начальное side_dist
-        if (ray_dir_x < 0) 
-        {
-            step_x = -1;
-            side_dist_x = (data->player_x - map_x) * delta_dist_x;
-        }
-        else 
-        {
-            step_x = 1;
-            side_dist_x = (map_x + 1.0 - data->player_x) * delta_dist_x;
-        }
-        if (ray_dir_y < 0) 
-        {
-            step_y = -1;
-            side_dist_y = (data->player_y - map_y) * delta_dist_y;
-        } 
-        else 
-        {
-            step_y = 1;
-            side_dist_y = (map_y + 1.0 - data->player_y) * delta_dist_y;
-        }
-        // Выполнить DDA (Цифровой дифференциальный анализ) для определения стен
-        while (!hit)
-        {
-            if (side_dist_x < side_dist_y) {
-                side_dist_x += delta_dist_x;
-                map_x += step_x;
-                side = 0;
-            } else {
-                side_dist_y += delta_dist_y;
-                map_y += step_y;
-                side = 1;
-            }
-            if (data->map[map_y][map_x] == 1)
-                hit = 1; // Стена найдена
-        }
-        // Рассчитать расстояние до стены
-        float perp_wall_dist;
-        if (side == 0) perp_wall_dist = (map_x - data->player_x + (1 - step_x) / 2) / ray_dir_x;
-        else perp_wall_dist = (map_y - data->player_y + (1 - step_y) / 2) / ray_dir_y;
-        // Ограничить расстояние до MAX_DISTANCE
-        if (perp_wall_dist > MAX_DISTANCE) perp_wall_dist = MAX_DISTANCE;
-        // Рассчитать высоту стены на основе расстояния
-        int wall_height =(HEIGHT / perp_wall_dist);
-        // Рассчитать, где начинать и заканчивать отрисовку стены
-        int draw_start = -wall_height / 2 + HEIGHT / 2;
-        if (draw_start < 0) draw_start = 0;
-        int draw_end = wall_height / 2 + HEIGHT / 2;
-        if (draw_end >= HEIGHT) draw_end = HEIGHT - 1;
-        // Отрисовка текстуры на стене
-        for (int y = draw_start; y < draw_end; y++) {
-            int tex_y = (y - draw_start) * data->wall_texture.height / (draw_end - draw_start);
-            int tex_x = (x * data->wall_texture.width) / WIDTH;
-            // Получить цвет из текстуры
-            int color = ((int *)data->wall_texture.data)[tex_y * (data->wall_texture.size_line / 4) + tex_x];
-            // Нарисовать пиксель
-            ((int *)data->data)[y * WIDTH + x] = color;
-        }
-        x++;
-    }
+void	steps_rend(t_data *data)
+{
+	if (data->render.ray_dir_x < 0)
+	{
+		data->render.step_x = -1;
+		data->render.side_dist_x = (data->player_x
+				- data->render.map_x) * data->render.delta_dist_x;
+	}
+	else
+	{
+		data->render.step_x = 1;
+		data->render.side_dist_x = (data->render.map_x
+				+ 1.0 - data->player_x) * data->render.delta_dist_x;
+	}
+	if (data->render.ray_dir_y < 0)
+	{
+		data->render.step_y = -1;
+		data->render.side_dist_y = (data->player_y
+				- data->render. map_y) * data->render.delta_dist_y;
+	}
+	else
+	{
+		data->render.step_y = 1;
+		data->render.side_dist_y = (data->render.map_y + 1.0
+				- data->player_y) * data->render.delta_dist_y;
+	}
+}
+
+void	dda_render(t_data *data)
+{
+	while (!data->render.hit)
+	{
+		if (data->render.side_dist_x < data->render.side_dist_y)
+		{
+			data->render.side_dist_x += data->render.delta_dist_x;
+			data->render.map_x += data->render.step_x;
+			data->render.side = 0;
+		}
+		else
+		{
+			data->render.side_dist_y += data->render.delta_dist_y;
+			data->render.map_y += data->render.step_y;
+			data->render.side = 1;
+		}
+		if (data->map[data->render.map_y][data->render.map_x] == 1)
+			data->render.hit = 1;
+	}
+}
+
+void	draw_wall(t_data *data)
+{
+	if (data->render.side == 0)
+		data->render.perp_wall_dist = (data->render.map_x - data->player_x
+				+ (1 - data->render.step_x) / 2) / data->render.ray_dir_x;
+	else
+		data->render.perp_wall_dist = (data->render.map_y - data->player_y
+				+ (1 - data->render.step_y) / 2) / data->render.ray_dir_y;
+	if (data->render.perp_wall_dist > MAX_DISTANCE)
+		data->render.perp_wall_dist = MAX_DISTANCE;
+	data->render.wall_height = (HEIGHT / data->render.perp_wall_dist);
+	data->render.draw_start = -(data->render.wall_height) / 2 + HEIGHT / 2;
+	if (data->render.draw_start < 0)
+		data->render.draw_start = 0;
+	data->render.draw_end = data->render.wall_height / 2 + HEIGHT / 2;
+	if (data->render.draw_end >= HEIGHT)
+		data->render.draw_end = HEIGHT - 1;
+}
+
+void	render(t_data *data)
+{
+	data->render.x = 0;
+	clear_screen(data, FLOOR_COLOR);
+	while (data->render.x < WIDTH)
+	{
+		ray_init(data);
+		steps_rend(data);
+		dda_render(data);
+		draw_wall(data);
+
+		data->render.y = data->render.draw_start;
+		while (data->render.y < data->render.draw_end)
+		{
+			data->render.tex_y = (data->render.y - data->render.draw_start)
+				* data->wall_texture.height / (data->render.draw_end
+					- data->render.draw_start);
+			data->render.tex_x = (data->render.x * data->wall_texture.width) / WIDTH;
+			data->render.color = ((int *)data->wall_texture.data)
+				[data->render.tex_y * (data->wall_texture.size_line / 4)
+				+ data->render.tex_x];
+			((int *)data->data)[data->render.y * WIDTH + data->render.x] = data->render.color;
+
+			data->render.y++;
+		}
+		data->render.x++;
+	}
 }

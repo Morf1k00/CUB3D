@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/08 16:51:18 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/08 17:48:05 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define TILE_SIZE 64
 # define PLAYER_RADIUS 5
 # define M_PI 3.14159265358979323846
-# define FLOOR_COLOR 0x000000
+# define FLOOR_COLOR 0x98FF98
 # define MAX_DISTANCE 100
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 10
