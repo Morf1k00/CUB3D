@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/08 17:48:05 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:50:23 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
+# include <fcntl.h>
 
 # define WIDTH 1260
 # define HEIGHT 800
 # define FOV 60
-# define MAP_WIDTH 5
-# define MAP_HEIGHT 5
+// # define MAP_WIDTH 5
+// # define MAP_HEIGHT 5
 # define TILE_SIZE 64
 # define PLAYER_RADIUS 5
 # define M_PI 3.14159265358979323846
@@ -82,7 +84,9 @@ typedef struct s_data
 	float		player_angle;
 	float		player_x; // Центр тайла
 	float		player_y;
-	int			map[MAP_HEIGHT][MAP_WIDTH];
+	char		**map;
+	int			map_width;
+	int			map_height;
 	t_texture	wall_texture;
 	t_texture	floor_texture;
 	t_render	render;
@@ -97,5 +101,16 @@ int		move_a(t_data *data);
 int		move_d(t_data *data);
 int		move_w(t_data *data);
 int		move_s(t_data *data);
+char	*get_next_line(int fd);
+void	open_file(char *map_path, t_data *dat);
+void	maps_checker(t_data *dat);
+void	player_position(t_data *dat);
+
+int	ft_strlen(const char *s);
+char	*ft_strdup(const char *src);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+char	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+char	*ft_strchr(const char *s, int c);
+char	*ft_strjoin(char const *s1, char const *s2);
 
 #endif

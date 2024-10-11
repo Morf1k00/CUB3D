@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:14:08 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/08 15:23:46 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/11 15:03:30 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	move_a(t_data *data)
 	move_x = cos((data->player_angle + 90) * M_PI / 180.0) * MOVE_SPEED;
 	move_y = sin((data->player_angle + 90) * M_PI / 180.0) * MOVE_SPEED;
 	if (data->map[(int)(data->player_y + move_y)]
-		[(int)(data->player_x + move_x)] == 0)
+		[(int)(data->player_x + move_x)] == 48)
 	{
 		data->player_x -= move_x;
 		data->player_y -= move_y;
@@ -36,7 +36,7 @@ int	move_d(t_data *data)
 	move_x = cos((data->player_angle + 90) * M_PI / 180.0) * MOVE_SPEED;
 	move_y = sin((data->player_angle + 90) * M_PI / 180.0) * MOVE_SPEED;
 	if (data->map[(int)(data->player_y + move_y)]
-		[(int)(data->player_x + move_x)] == 0)
+		[(int)(data->player_x + move_x)] == 48)
 	{
 		data->player_x += move_x;
 		data->player_y += move_y;
@@ -52,7 +52,7 @@ int	move_w(t_data *data)
 	move_x = cos(data->player_angle * M_PI / 180.0) * MOVE_SPEED;
 	move_y = sin(data->player_angle * M_PI / 180.0) * MOVE_SPEED;
 	if (data->map[(int)(data->player_y + move_y)]
-		[(int)(data->player_x + move_x)] == 0)
+		[(int)(data->player_x + move_x)] == 48)
 	{
 		data->player_x += move_x;
 		data->player_y += move_y;
@@ -68,7 +68,7 @@ int	move_s(t_data *data)
 	move_x = cos(data->player_angle * M_PI / 180.0) * MOVE_SPEED;
 	move_y = sin(data->player_angle * M_PI / 180.0) * MOVE_SPEED;
 	if (data->map[(int)(data->player_y - move_y)]
-		[(int)(data->player_x - move_x)] == 0)
+		[(int)(data->player_x - move_x)] == 48)
 	{
 		data->player_x -= move_x;
 		data->player_y -= move_y;

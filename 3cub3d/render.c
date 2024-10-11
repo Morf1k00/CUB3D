@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:58:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/08 17:26:46 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/10 16:50:42 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,27 @@ void	steps_rend(t_data *data)
 	}
 }
 
+// void	dda_render(t_data *data)
+// {
+// 	while (!data->render.hit)
+// 	{
+// 		if (data->render.side_dist_x < data->render.side_dist_y)
+// 		{
+// 			data->render.side_dist_x += data->render.delta_dist_x;
+// 			data->render.map_x += data->render.step_x;
+// 			data->render.side = 0;
+// 		}
+// 		else
+// 		{
+// 			data->render.side_dist_y += data->render.delta_dist_y;
+// 			data->render.map_y += data->render.step_y;
+// 			data->render.side = 1;
+// 		}
+// 		if (data->map[data->render.map_y][data->render.map_x] == 1)
+// 			data->render.hit = 1;
+// 	}
+// }
+
 void	dda_render(t_data *data)
 {
 	while (!data->render.hit)
@@ -70,10 +91,21 @@ void	dda_render(t_data *data)
 			data->render.map_y += data->render.step_y;
 			data->render.side = 1;
 		}
-		if (data->map[data->render.map_y][data->render.map_x] == 1)
+
+		// Проверка на выход за пределы карты
+		if (data->render.map_x < 0 || data->render.map_x >= data->map_width ||
+			data->render.map_y < 0 || data->render.map_y >= data->map_height)
+		{
+			// Луч вышел за пределы карты, необходимо остановить алгоритм
+			data->render.hit = 1;
+			break;
+		}
+
+		if (data->map[data->render.map_y][data->render.map_x] == '1') // Проверка на стену
 			data->render.hit = 1;
 	}
 }
+
 
 void	draw_wall(t_data *data)
 {
@@ -97,6 +129,7 @@ void	draw_wall(t_data *data)
 void	render(t_data *data)
 {
 	data->render.x = 0;
+	// data->player_angle = 90;
 	clear_screen(data, FLOOR_COLOR);
 	while (data->render.x < WIDTH)
 	{
@@ -104,7 +137,6 @@ void	render(t_data *data)
 		steps_rend(data);
 		dda_render(data);
 		draw_wall(data);
-
 		data->render.y = data->render.draw_start;
 		while (data->render.y < data->render.draw_end)
 		{
@@ -116,7 +148,6 @@ void	render(t_data *data)
 				[data->render.tex_y * (data->wall_texture.size_line / 4)
 				+ data->render.tex_x];
 			((int *)data->data)[data->render.y * WIDTH + data->render.x] = data->render.color;
-
 			data->render.y++;
 		}
 		data->render.x++;

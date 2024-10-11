@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/08 17:43:14 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/11 14:51:05 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,26 +57,26 @@ int	game_loop(t_data *data)
 	return (0);
 }
 
-void initializeMap(int height, int width, int map[height][width])
-{
-	// Инициализация карты значениями
-	int tempMap[5][5] =
-	{
-		{1, 1, 1, 1, 1},
-		{1, 0, 0, 0, 1},
-		{1, 0, 1, 0, 1},
-		{1, 0, 1, 0, 1},
-		{1, 1, 1, 1, 1}
-	};
-	// Копирование значений во внешний массив
-	for (int i = 0; i < height; i++)
-	{
-		for (int j = 0; j < width; j++)
-		{
-			map[i][j] = tempMap[i][j];
-		}
-	}
-}
+// void initializeMap(int height, int width, char **map)
+// {
+// 	// Инициализация карты значениями
+// 	int tempMap[5][5] =
+// 	{
+// 		{1, 1, 1, 1, 1},
+// 		{1, 0, 0, 0, 1},
+// 		{1, 0, 1, 0, 1},
+// 		{1, 0, 1, 0, 1},
+// 		{1, 1, 1, 1, 1}
+// 	};
+// 	// Копирование значений во внешний массив
+// 	for (int i = 0; i < height; i++)
+// 	{
+// 		for (int j = 0; j < width; j++)
+// 		{
+// 			map[i][j] = tempMap[i][j];
+// 		}
+// 	}
+// }
 
 void	init_data(t_data *data)
 {
@@ -99,14 +99,16 @@ int	main(int arc, char **arv)
 {
 	t_data	data;
 
-	(void)arv;
-	(void)arc;
 	init_data(&data);
-	initializeMap(MAP_HEIGHT, MAP_WIDTH, data.map);
-	data.player_x = 2.5;
-	data.player_y = 1.5;
-	data.player_angle = 90;
+	open_file(arv[1], &data);
+	for (int i = 0; i < data.map_height; i++)
+		printf("%s", data.map[i]);
+    // maps_checker(&data);
+    player_position(&data);
+	printf("1\n");
 	load_textures(&data);
+	data.player_angle = 90;
+	// printf("%f\n", data.player_angle);
 	mlx_hook(data.win, 2, 1L << 0, handle_key_press, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
