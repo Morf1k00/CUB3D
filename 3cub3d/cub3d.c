@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/11 14:51:05 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:12:35 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,23 @@ void	load_textures(t_data *data)
 			&data->wall_texture.endian);
 }
 
-void	clear_screen(t_data *data, int color)
+void	clear_screen(t_data *data, int color, int color2)
 {
 	int	x;
 	int	y;
 
 	x = 0;
 	y = 0;
+	while (y < HEIGHT / 2)
+	{
+		while (x < WIDTH)
+		{
+			((int *)data->data)[y * WIDTH + x] = color2;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
 	while (y < HEIGHT)
 	{
 		while (x < WIDTH)
@@ -56,27 +66,6 @@ int	game_loop(t_data *data)
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }
-
-// void initializeMap(int height, int width, char **map)
-// {
-// 	// Инициализация карты значениями
-// 	int tempMap[5][5] =
-// 	{
-// 		{1, 1, 1, 1, 1},
-// 		{1, 0, 0, 0, 1},
-// 		{1, 0, 1, 0, 1},
-// 		{1, 0, 1, 0, 1},
-// 		{1, 1, 1, 1, 1}
-// 	};
-// 	// Копирование значений во внешний массив
-// 	for (int i = 0; i < height; i++)
-// 	{
-// 		for (int j = 0; j < width; j++)
-// 		{
-// 			map[i][j] = tempMap[i][j];
-// 		}
-// 	}
-// }
 
 void	init_data(t_data *data)
 {
@@ -101,14 +90,8 @@ int	main(int arc, char **arv)
 
 	init_data(&data);
 	open_file(arv[1], &data);
-	for (int i = 0; i < data.map_height; i++)
-		printf("%s", data.map[i]);
-    // maps_checker(&data);
-    player_position(&data);
-	printf("1\n");
+	player_position(&data);
 	load_textures(&data);
-	data.player_angle = 90;
-	// printf("%f\n", data.player_angle);
 	mlx_hook(data.win, 2, 1L << 0, handle_key_press, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
@@ -118,3 +101,4 @@ int	main(int arc, char **arv)
 	free(data.mlx);
 	return (0);
 }
+// maps_checker(&data);

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 16:58:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/10 16:50:42 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:15:41 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,21 +91,16 @@ void	dda_render(t_data *data)
 			data->render.map_y += data->render.step_y;
 			data->render.side = 1;
 		}
-
-		// Проверка на выход за пределы карты
-		if (data->render.map_x < 0 || data->render.map_x >= data->map_width ||
-			data->render.map_y < 0 || data->render.map_y >= data->map_height)
+		if (data->render.map_x < 0 || data->render.map_x >= data->map_width
+			|| data->render.map_y < 0 || data->render.map_y >= data->map_height)
 		{
-			// Луч вышел за пределы карты, необходимо остановить алгоритм
 			data->render.hit = 1;
-			break;
+			break ;
 		}
-
-		if (data->map[data->render.map_y][data->render.map_x] == '1') // Проверка на стену
+		if (data->map[data->render.map_y][data->render.map_x] == '1')
 			data->render.hit = 1;
 	}
 }
-
 
 void	draw_wall(t_data *data)
 {
@@ -129,8 +124,7 @@ void	draw_wall(t_data *data)
 void	render(t_data *data)
 {
 	data->render.x = 0;
-	// data->player_angle = 90;
-	clear_screen(data, FLOOR_COLOR);
+	clear_screen(data, FLOOR_COLOR, CLOUD_COLOR);
 	while (data->render.x < WIDTH)
 	{
 		ray_init(data);
@@ -143,11 +137,13 @@ void	render(t_data *data)
 			data->render.tex_y = (data->render.y - data->render.draw_start)
 				* data->wall_texture.height / (data->render.draw_end
 					- data->render.draw_start);
-			data->render.tex_x = (data->render.x * data->wall_texture.width) / WIDTH;
+			data->render.tex_x = (data->render.x * data->wall_texture.width)
+				/ WIDTH;
 			data->render.color = ((int *)data->wall_texture.data)
-				[data->render.tex_y * (data->wall_texture.size_line / 4)
+			[data->render.tex_y * (data->wall_texture.size_line / 4)
 				+ data->render.tex_x];
-			((int *)data->data)[data->render.y * WIDTH + data->render.x] = data->render.color;
+			((int *)data->data)[data->render.y * WIDTH + data->render.x]
+				= data->render.color;
 			data->render.y++;
 		}
 		data->render.x++;

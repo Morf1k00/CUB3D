@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/11 15:21:50 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:03:22 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,18 @@ void	open_file(char *map_path, t_data *dat)
 // 	}
 // }
 
+void check_pos(t_data *data, int i, int j)
+{
+	if (data->map[i][j] == 'S')
+		data->player_angle = 0;
+	if (data->map[i][j] == 'W')
+		data->player_angle = 90;
+	if (data->map[i][j] == 'E')
+		data->player_angle = 180;
+	if (data->map[i][j] == 'N')
+		data->player_angle = 270;
+}
+
 void	player_position(t_data *dat)
 {
 	int	i;
@@ -149,12 +161,12 @@ void	player_position(t_data *dat)
 		j = 0;
 		while (dat->map[i][j])
 		{
-			if (dat->map[i][j] == 'P')
+			if (dat->map[i][j] == 'N' || dat->map[i][j] == 'S' ||
+				dat->map[i][j] == 'W' || dat->map[i][j] == 'E')
 			{
-				// i += 0.5;
-				// j += 0.5;
-				dat->player_x = (float)j ;
-				dat->player_y = (float)i ;
+				check_pos(dat, i, j);
+				dat->player_x = (float)j;
+				dat->player_y = (float)i;
 				dat->map[i][j] = '0';
 				return ;
 			}

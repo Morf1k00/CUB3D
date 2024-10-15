@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/10 16:50:23 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/15 16:10:12 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define PLAYER_RADIUS 5
 # define M_PI 3.14159265358979323846
 # define FLOOR_COLOR 0x98FF98
+# define CLOUD_COLOR 0x87CEEB
 # define MAX_DISTANCE 100
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 10
@@ -93,7 +94,7 @@ typedef struct s_data
 }				t_data;
 
 void	load_texture(t_data *data, t_texture *texture, const char *file_path);
-void	clear_screen(t_data *data, int color);
+void	clear_screen(t_data *data, int color, int color2);
 void	render(t_data *data);
 int		handle_key_press(int keycode, t_data *data);
 int		game_loop(t_data *data);
