@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/15 16:03:22 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/16 16:26:40 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,11 +92,6 @@ void	open_file(char *map_path, t_data *dat)
 	i = 0;
 	count_line(map_path, dat);
 	fd = open(map_path, O_RDONLY);
-	if (fd < 0)
-	{
-		printf("Error\nCan't open file\n");
-		return ;
-	}
 	dat->map = malloc(sizeof(char *) * (dat->map_height + 1));
 	line = get_next_line(fd);
 	while (line)

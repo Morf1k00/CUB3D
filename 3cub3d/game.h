@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/15 16:10:12 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:23:35 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define TILE_SIZE 64
 # define PLAYER_RADIUS 5
 # define M_PI 3.14159265358979323846
-# define FLOOR_COLOR 0x98FF98
-# define CLOUD_COLOR 0x87CEEB
+// # define FLOOR_COLOR 0x98FF98
+// # define CLOUD_COLOR 0x87CEEB
 # define MAX_DISTANCE 100
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 10
@@ -64,6 +64,7 @@ typedef struct s_render
 	int		step_y;
 	int		side;
 	int		hit;
+	float	wall_x;
 	float	perp_wall_dist;
 	int		wall_height;
 	int		draw_start;
@@ -90,11 +91,17 @@ typedef struct s_data
 	int			map_height;
 	t_texture	wall_texture;
 	t_texture	floor_texture;
+	char		*north_texture;
+	char		*south_texture;
+	char		*west_texture;
+	char		*east_texture;
+	int			color_f;	
+	int			color_c;
 	t_render	render;
 }				t_data;
 
 void	load_texture(t_data *data, t_texture *texture, const char *file_path);
-void	clear_screen(t_data *data, int color, int color2);
+void	clear_screen(t_data *data);
 void	render(t_data *data);
 int		handle_key_press(int keycode, t_data *data);
 int		game_loop(t_data *data);
@@ -113,5 +120,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
+void	finder_coordinate(t_data *data, char *file_name);
+int	ft_atoi(const char *str);
+char	**ft_split(char const *s, char c);
+
+void	ft_raycast(t_data *data);
 
 #endif

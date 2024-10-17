@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:14:08 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/11 15:03:30 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:25:43 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,9 @@ int	move_a(t_data *data)
 		data->player_x -= move_x;
 		data->player_y -= move_y;
 	}
-	render(data);
+	// render(data);
+	ft_raycast(data);
+	
 }
 
 int	move_d(t_data *data)
@@ -41,7 +43,8 @@ int	move_d(t_data *data)
 		data->player_x += move_x;
 		data->player_y += move_y;
 	}
-	render(data);
+	// render(data);
+	ft_raycast(data);
 }
 
 int	move_w(t_data *data)
@@ -57,7 +60,8 @@ int	move_w(t_data *data)
 		data->player_x += move_x;
 		data->player_y += move_y;
 	}
-	render(data);
+	// render(data);
+	ft_raycast(data);
 }
 
 int	move_s(t_data *data)
@@ -73,5 +77,6 @@ int	move_s(t_data *data)
 		data->player_x -= move_x;
 		data->player_y -= move_y;
 	}
-	render(data);
+	// render(data);
+	ft_raycast(data);
 }

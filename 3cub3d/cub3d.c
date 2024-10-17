@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/15 16:12:35 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/17 14:24:57 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	load_textures(t_data *data)
 	int	height;
 
 	data->wall_texture.img = mlx_xpm_file_to_image(data->mlx,
-			"wall1.xpm", &width, &height);
+			"walls1.xpm", &width, &height);
 	if (!data->wall_texture.img)
 	{
 		printf("Error loading texture file.\n");
@@ -31,7 +31,7 @@ void	load_textures(t_data *data)
 			&data->wall_texture.endian);
 }
 
-void	clear_screen(t_data *data, int color, int color2)
+void	clear_screen(t_data *data)
 {
 	int	x;
 	int	y;
@@ -42,7 +42,7 @@ void	clear_screen(t_data *data, int color, int color2)
 	{
 		while (x < WIDTH)
 		{
-			((int *)data->data)[y * WIDTH + x] = color2;
+			((int *)data->data)[y * WIDTH + x] = data->color_c;
 			x++;
 		}
 		x = 0;
@@ -52,7 +52,7 @@ void	clear_screen(t_data *data, int color, int color2)
 	{
 		while (x < WIDTH)
 		{
-			((int *)data->data)[y * WIDTH + x] = color;
+			((int *)data->data)[y * WIDTH + x] = data->color_f;
 			x++;
 		}
 		x = 0;
@@ -62,7 +62,8 @@ void	clear_screen(t_data *data, int color, int color2)
 
 int	game_loop(t_data *data)
 {
-	render(data);
+	// render(data);
+	ft_raycast(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
 }
@@ -89,6 +90,7 @@ int	main(int arc, char **arv)
 	t_data	data;
 
 	init_data(&data);
+	finder_coordinate(&data, arv[1]);
 	open_file(arv[1], &data);
 	player_position(&data);
 	load_textures(&data);
