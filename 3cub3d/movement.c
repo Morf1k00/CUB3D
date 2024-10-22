@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:42:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/17 15:32:23 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:16:30 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int	rotate_right(t_data *data)
 		data->player_angle -= 360;
 	ft_raycast(data);
 }
+
 
 int	handle_key_press(int keycode, t_data *data)
 {

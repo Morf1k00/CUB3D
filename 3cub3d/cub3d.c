@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/22 13:25:13 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/22 17:18:45 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	load_textures(t_data *data)
 {
 	int	width;
 	int	height;
-	int i = 0;
+	int i;
 
+	i = 0;
     while (i < 4)
     {
         data->wall_texture[i].img = mlx_xpm_file_to_image(data->mlx, data->wall_texture[i].path, &width, &height);
@@ -96,6 +97,9 @@ int	main(int arc, char **arv)
 
 	init_data(&data);
 	open_file(arv[1], &data);
+	for (int i = 0; i < data.map_height; i++)
+		printf("%s", data.map[i]);
+	check_map(&data);
 	finder_coordinate(&data, arv[1]);
 	player_position(&data);
 	load_textures(&data);

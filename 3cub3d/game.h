@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/22 13:15:28 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:14:07 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,5 +119,8 @@ int		ft_atoi(const char *str);
 char	**ft_split(char const *s, char c);
 void	load_textures(t_data *data);
 void	ft_raycast(t_data *data);
+void	check_map(t_data *data);
+int		ft_isspace(char c);
+int handle_key_rotate(int keycode, t_data *data);
 
 #endif

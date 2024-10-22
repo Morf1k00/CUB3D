@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:22:42 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/18 16:44:39 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/22 14:50:56 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ char *ft_strtrim(char *str)
 
 void check_wall_texture(t_data *data, char *line)
 {
-	if (line[0] == 'N')
+	if (line[0] == 'N' && line[1] == 'O')
 		data->wall_texture[0].path = ft_strdup(ft_strtrim(line + 3));
-	else if (line[0] == 'S')
+	else if (line[0] == 'S' && line[1] == 'O')
 		data->wall_texture[1].path = ft_strdup(ft_strtrim(line + 3));
-	else if (line[0] == 'W')
+	else if (line[0] == 'W' && line[1] == 'E')
 		data->wall_texture[2].path = ft_strdup(ft_strtrim(line + 3));
-	else if (line[0] == 'E')
+	else if (line[0] == 'E' && line[1] == 'A')
 		data->wall_texture[3].path = ft_strdup(ft_strtrim(line + 3));
 }
 
