@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/16 16:26:40 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:38:52 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	count_width(char *line, t_data *dat)
 		i++;
 	if (i > dat->map_width)
 		dat->map_width = i;
-	
 }
 
 void	count_line(char *map_path, t_data *dat)
@@ -39,12 +38,18 @@ void	count_line(char *map_path, t_data *dat)
 	}
 	line = get_next_line(fd);
 	while (line)
-	{
-		count_width(line, dat);
-		i++;
-		free(line);
-		line = get_next_line(fd);
-	}
+		if (line[0]== '1' || line[0] == '0' || line[0] == ' ' || line[0] == '\t')
+		{
+			count_width(line, dat);
+			i++;
+			free(line);
+			line = get_next_line(fd);
+		}
+		else
+		{
+			free(line);
+			line = get_next_line(fd);
+		}
 	close(fd);
 	dat->map_height = i;
 }
@@ -94,19 +99,27 @@ void	open_file(char *map_path, t_data *dat)
 	fd = open(map_path, O_RDONLY);
 	dat->map = malloc(sizeof(char *) * (dat->map_height + 1));
 	line = get_next_line(fd);
-	while (line)
+	while (line)	
 	{
-		if (ft_strlen(line) < dat->map_width)
-		{	
-			new_line = line_bigger(line, dat->map_width);
-			dat->map[i] = ft_strdup(new_line);
-			free(new_line);
+		if (line[0]== '1' || line[0] == '0' || line[0] == ' ' || line[0] == '\t')
+		{
+				if (ft_strlen(line) < dat->map_width)
+				{	
+					new_line = line_bigger(line, dat->map_width);
+					dat->map[i] = ft_strdup(new_line);
+					free(new_line);
+				}
+				else
+					dat->map[i] = ft_strdup(line);
+				i++;
+				free(line);
+				line = get_next_line(fd);
 		}
 		else
-			dat->map[i] = ft_strdup(line);
-		i++;
-		free(line);
-		line = get_next_line(fd);
+		{
+			free(line);
+			line = get_next_line(fd);
+		}
 	}
 	dat->map[i] = NULL;
 	close(fd);
