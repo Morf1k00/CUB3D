@@ -6,122 +6,105 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:00:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/22 16:25:27 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:32:19 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-void error_exit(const char *message)
-{
-    printf("Error: %s\n", message);
-    exit(EXIT_FAILURE);
-}
+// void floodFill(t_data *data, int startX, int startY)
+// {
+//     int x = startX;
+//     int y = startY;
 
-bool is_wall_or_space(char c)
-{
-    return (c == '1' || ft_isspace(c));
-}
+//     if (x < 0 || x >= data->map_width || y < 0 || y >= data->map_height || data->map[y][x] != '0') 
+//         return;
+    
 
-bool check_surroundings(t_data *data, int y, int x)
-{
-    if (y <= 0 || x <= 0 || y >= data->map_height - 1 || x >= data->map_width - 1)
-        return false;
+//     int stack[WIDTH * HEIGHT][2];
+//     int top = -1;
 
-    return (is_wall_or_space(data->map[y][x - 1]) &&
-            is_wall_or_space(data->map[y][x + 1]) &&
-            is_wall_or_space(data->map[y - 1][x]) &&
-            is_wall_or_space(data->map[y + 1][x]));
-}
+//     stack[++top][0] = x;
+//     stack[top][1] = y;
 
-// Check that the map is closed on top and bottom
-bool check_top_bottom(t_data *data)
+//     while (top >= 0)
+// 	{
+//         x = stack[top][0];
+//         y = stack[top][1];
+//         top--;
+//         if (data->map[y][x] == '0')
+// 		{
+//             data->map[y][x] = '2';
+//             if (y + 1 < data->map_height)
+// 			{
+//                 stack[++top][0] = x;
+//                 stack[top][1] = y + 1;
+//             }
+//             if (y - 1 >= 0) {
+//                 stack[++top][0] = x;
+//                 stack[top][1] = y - 1;
+//             }
+//             if (x + 1 < data->map_width) {
+//                 stack[++top][0] = x + 1;
+//                 stack[top][1] = y;
+//             }
+//             if (x - 1 >= 0) {
+//                 stack[++top][0] = x - 1;
+//                 stack[top][1] = y;
+//             }
+//         }
+//     }
+// }
+
+// // Функция для проверки замкнутости карты, начиная с позиции игрока
+// bool isMapClosed(t_data *data, int playerX, int playerY) {
+//     // Запуск Flood Fill из позиции игрока
+//     if (data->map[playerY][playerX] != '0') 
+//         return false; // Если позиция игрока не проходимая, карта не замкнута
+    
+//     floodFill(data, playerX, playerY); // Запуск Flood Fill из позиции игрока
+//     // Проверяем, остались ли ещё '0'
+//     for (int j = 0; j < data->map_height; j++) {
+//         for (int i = 0; i < data->map_width; i++) {
+//             if (data->map[j][i] == '0') {
+//                 return false; // Если остались '0', карта не замкнута
+//             }
+//         }
+//     }
+//     return true; // Все клетки заполнены
+// }
+
+
+static int f_fill(t_data *data, char **map, int p_y, int p_x)
 {
-    int i = 0;
-    while (i < data->map_width)
+    int c_x = p_x;
+    int c_y = p_y;
+
+    // Check boundaries and invalid positions
+    if (map[c_y][c_x] == '\0')
     {
-        if (data->map[0][i] != '1' && !ft_isspace(data->map[0][i]))
-            return false;
-        if (data->map[data->map_height - 1][i] != '1' && !ft_isspace(data->map[data->map_height - 1][i]))
-            return false;
-        i++;
-    }
-    return true;
-}
+		printf("Error\n");
+		exit(1);
+	}
+    if (c_y < 0 || c_x < 0 || map[c_y][c_x] == '1' || map[c_y][c_x] == 'F')
+        return 0;
+    // Mark the cell as visited
+    map[c_y][c_x] = 'F';
 
-// Check left and right sides of each row
-bool check_left_right(t_data *data)
+    // Recursive flood fill in all directions
+    if (f_fill(data, map, c_y + 1, c_x) || f_fill(data, map, c_y - 1, c_x) || 
+        f_fill(data,map, c_y, c_x + 1) || f_fill(data,map, c_y, c_x - 1))
+        return 1;
+    return 0;
+}
+   
+void check_walls(t_data *data)
 {
-    int i = 0;
-    while (i < data->map_height)
+
+    char **map = data->map;
+    if (f_fill(data,map, (int)data->player_y, (int)data->player_x))
     {
-        int first_non_space = 0;
-        while (ft_isspace(data->map[i][first_non_space]))
-            first_non_space++;
-        if (data->map[i][first_non_space] != '1')
-            return false;
-
-        int last_non_space = ft_strlen(data->map[i]) - 1;
-        while (last_non_space > 0 && ft_isspace(data->map[i][last_non_space]))
-            last_non_space--;
-        if (data->map[i][last_non_space] != '1')
-            return false;
-
-        i++;
+        printf("Error\n");
+        exit(1);
     }
-    return true;
-}
-
-// Ensure that the map is fully enclosed by walls
-bool is_map_closed(t_data *data)
-{
-    return check_top_bottom(data) && check_left_right(data);
-}
-
-void check_map_chars(t_data *data)
-{
-    int y;
-    int player_count;
-	char cell;
-	int x;
-
-	y = 0;
-	player_count = 0;
-    while (y < data->map_height)
-    {
-        x = 0;
-        while (x < ft_strlen(data->map[y]))
-        {
-            cell = data->map[y][x];
-            if (ft_isspace(cell))
-            {
-                x++;
-                continue;
-            }
-            if (strchr("NSEW", cell))
-            {
-                if (!check_surroundings(data, y, x))
-                    error_exit("Map is not closed around player position");
-                player_count++;
-            }
-            else if (cell == '0')
-                if (!check_surroundings(data, y, x))
-                    error_exit("Map is not closed around empty space");
-            else if (cell != '1' && cell != ' ')
-                error_exit("Invalid character in map");
-            x++;
-        }
-        y++;
-    }
-    if (player_count == 0)
-        error_exit("No player start position found");
-    if (player_count > 1)
-        error_exit("Multiple player start positions found");
-}
-
-void check_map(t_data *data)
-{
-    if (!is_map_closed(data))
-        error_exit("Map is not closed at the boundaries");
-    check_map_chars(data);
 }

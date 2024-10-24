@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/22 17:18:16 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/23 16:40:33 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,12 @@
 void	count_width(char *line, t_data *dat)
 {
 	int	i;
+	int j;
 
 	i = ft_strlen(line);
+	j = count_tabs(line);
 	if (i > dat->map_width)
-		dat->map_width = i;
+		dat->map_width = i + j;
 }
 
 void	count_line(char *map_path, t_data *dat)
@@ -65,24 +67,6 @@ void	*ft_memset(void *b, int c, size_t len)
 	return (b);
 }
 
-char *line_bigger(char *line, int width)
-{
-    int old_len;
-    int padding_len;
-    char *new_line;
-
-	old_len = ft_strlen(line);
-	padding_len = width - old_len;
-	new_line = malloc(sizeof(char) * (width + 1));
-	if (!new_line)
-		return (NULL);
-	strncpy(new_line, line, old_len - 1);
-	memset(new_line + old_len - 1, '1', width - old_len);
-	new_line[width - 1] = '\n';
-	new_line[width] = '\0';
-	return (new_line);
-}
-
 void	open_file(char *map_path, t_data *dat)
 {
 	int		fd;
@@ -93,20 +77,15 @@ void	open_file(char *map_path, t_data *dat)
 	i = 0;
 	count_line(map_path, dat);
 	fd = open(map_path, O_RDONLY);
+	printf("%i\n", dat->map_height);
 	dat->map = malloc(sizeof(char *) * (dat->map_height + 1));
 	line = get_next_line(fd);
 	while (line)	
 	{
 		if (line[0]== '1' || line[0] == '0' || line[0] == ' ' || line[0] == '\t')
 		{
-			if (ft_strlen(line) < dat->map_width)
-			{	
-				new_line = line_bigger(line, dat->map_width);
-				dat->map[i] = ft_strdup(new_line);
-				free(new_line);
-			}
-			else
-				dat->map[i] = ft_strdup(line);
+			
+			dat->map[i] = ft_strdup(line);
 			i++;
 			free(line);
 			line = get_next_line(fd);

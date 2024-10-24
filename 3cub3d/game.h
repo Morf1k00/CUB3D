@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/22 16:14:07 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:05:13 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,9 @@ void	load_textures(t_data *data);
 void	ft_raycast(t_data *data);
 void	check_map(t_data *data);
 int		ft_isspace(char c);
-int handle_key_rotate(int keycode, t_data *data);
+void map_rewrite(t_data *data);
+int count_tabs(char *line);
+bool isMapClosed(t_data *data, int playerX, int playerY);
+void check_walls(t_data *data);
 
 #endif

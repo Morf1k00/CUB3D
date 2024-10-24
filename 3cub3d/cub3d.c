@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/22 17:18:45 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:05:20 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ void	clear_screen(t_data *data)
 
 int	game_loop(t_data *data)
 {
-	// render(data);
 	ft_raycast(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
@@ -97,11 +96,19 @@ int	main(int arc, char **arv)
 
 	init_data(&data);
 	open_file(arv[1], &data);
+	printf("%i\n", data.map_width);;
+	map_rewrite(&data);
 	for (int i = 0; i < data.map_height; i++)
 		printf("%s", data.map[i]);
-	check_map(&data);
 	finder_coordinate(&data, arv[1]);
 	player_position(&data);
+	// if (!isMapClosed(&data, data.player_x, data.player_y))
+	// {
+	// 	printf("Error\n");
+	// 	exit(EXIT_FAILURE);
+	// }
+	// isMapClosed(&data, data.player_x, data.player_y);
+	check_walls(&data);
 	load_textures(&data);
 	mlx_hook(data.win, 2, 1L << 0, handle_key_press, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
