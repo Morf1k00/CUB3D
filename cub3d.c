@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/25 12:15:02 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:43:03 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,8 +105,6 @@ int	main(int arc, char **arv)
 	player_position(&data);
 	check_walls(&data);
 	load_textures(&data);
-	printf("Player x: %i\n", (int)data.player_x);
-	printf("Player y: %f\n", data.player_y);
 	mlx_hook(data.win, 2, 1L << 0, handle_key_press, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/24 14:05:13 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:34:17 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# define WIDTH 1260
-# define HEIGHT 800
+# define WIDTH 1920
+# define HEIGHT 1260
 # define FOV 60
 # define TILE_SIZE 64
 # define PLAYER_RADIUS 5
