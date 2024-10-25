@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/10/16 16:58:35 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/10/24 14:24:57 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = cub3D
 
 # Compiler and flags
-CC = gcc  -g -fsanitize=address
+CC = gcc  #-g -fsanitize=address
 FLAGS = -Wall -Wextra -Werror -I$(MLX_DIR) -I$(HEADER_DIR)
 RM = rm -rf
 
@@ -24,7 +24,7 @@ HEADER_SRCS = game.h
 HEADER =  $(HEADER_SRCS)
 
 # Source files
-MPATH_SRCS = cub3d.c movement.c render.c movements.c utils.c utils2.c parse_map.c get_next_line.c file_check.c ft_split.c
+MPATH_SRCS = cub3d.c movement.c render.c movements.c utils.c utils2.c parse_map.c get_next_line.c file_check.c ft_split.c map_checker.c map_rewrite.c
 MPATH_DIR = sourse/
 MPATH =  $(MPATH_SRCS)
 OBJ_M = $(MPATH:.c=.o)

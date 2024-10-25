@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/17 14:24:57 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:15:02 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,25 @@ void	load_textures(t_data *data)
 {
 	int	width;
 	int	height;
+	int i;
 
-	data->wall_texture.img = mlx_xpm_file_to_image(data->mlx,
-			"walls1.xpm", &width, &height);
-	if (!data->wall_texture.img)
-	{
-		printf("Error loading texture file.\n");
-		exit(EXIT_FAILURE);
-	}
-	data->wall_texture.width = width;
-	data->wall_texture.height = height;
-	data->wall_texture.data = mlx_get_data_addr(data->wall_texture.img,
-			&data->wall_texture.bpp, &data->wall_texture.size_line,
-			&data->wall_texture.endian);
+	i = 0;
+    while (i < 4)
+    {
+        data->wall_texture[i].img = mlx_xpm_file_to_image(data->mlx, data->wall_texture[i].path, &width, &height);
+        if (!data->wall_texture[i].img)
+        {
+            printf("Error loading texture file: %s\n", data->wall_texture[i].path);
+            exit(EXIT_FAILURE);
+        }
+        data->wall_texture[i].width = width;
+        data->wall_texture[i].height = height;
+        data->wall_texture[i].data = mlx_get_data_addr(data->wall_texture[i].img,
+                                                        &data->wall_texture[i].bpp,
+                                                        &data->wall_texture[i].size_line,
+                                                        &data->wall_texture[i].endian);
+		i++;
+    }
 }
 
 void	clear_screen(t_data *data)
@@ -62,7 +68,7 @@ void	clear_screen(t_data *data)
 
 int	game_loop(t_data *data)
 {
-	// render(data);
+	
 	ft_raycast(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
@@ -90,10 +96,17 @@ int	main(int arc, char **arv)
 	t_data	data;
 
 	init_data(&data);
-	finder_coordinate(&data, arv[1]);
 	open_file(arv[1], &data);
+	printf("%i\n", data.map_width);;
+	map_rewrite(&data);
+	for (int i = 0; i < data.map_height; i++)
+		printf("%s", data.map[i]);
+	finder_coordinate(&data, arv[1]);
 	player_position(&data);
+	check_walls(&data);
 	load_textures(&data);
+	printf("Player x: %i\n", (int)data.player_x);
+	printf("Player y: %f\n", data.player_y);
 	mlx_hook(data.win, 2, 1L << 0, handle_key_press, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
