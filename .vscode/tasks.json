@@ -1,0 +1,39 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+	  {
+		"label": "build",
+		"type": "shell",
+		"command": "gcc",
+		"args": [
+		  "-g",
+		//   "${file}",
+		  "cub3d.c",
+		  "file_check.c",
+		  "ft_split.c",
+		  "get_next_line.c",
+		  "map_checker.c",
+		  "map_rewrite.c",
+		  "movement.c",
+		  "movements.c",
+		  "parse_map.c",
+		  "render.c",
+		  "utils2.c",
+		  "utils.c",
+		  "-o",
+		  "${fileDirname}/${fileBasenameNoExtension}",
+		  "-Lmlx",
+		  "-lmlx",
+		  "-lXext",
+		  "-lX11",
+		  "-lm"
+		],
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
+		},
+		"problemMatcher": ["$gcc"],
+		"detail": "Generated task by VS Code."
+	  }
+	]
+  }
