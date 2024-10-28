@@ -1,0 +1,250 @@
+<!-- Creator     : groff version 1.19.2 -->
+<!-- CreationDate: Fri Dec 15 10:48:39 2023 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p     { margin-top: 0; margin-bottom: 0; }
+       pre   { margin-top: 0; margin-bottom: 0; }
+       table { margin-top: 0; margin-bottom: 0; }
+</style>
+<title>MiniLibX</title>
+
+</head>
+<body>
+
+<h1 align=center>MiniLibX</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSYS">SYNOPSYS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#BSD/LINUX X-WINDOW CONCEPT">BSD/LINUX X-WINDOW CONCEPT</a><br>
+<a href="#MACOSX CONCEPT">MACOSX CONCEPT</a><br>
+<a href="#INCLUDE FILE">INCLUDE FILE</a><br>
+<a href="#LIBRARY FUNCTIONS">LIBRARY FUNCTIONS</a><br>
+<a href="#LINKING MiniLibX on BSD/Linux and X-Window">LINKING MiniLibX on BSD/Linux and X-Window</a><br>
+<a href="#LINKING MiniLibX on MACOSX">LINKING MiniLibX on MACOSX</a><br>
+<a href="#RETURN VALUES">RETURN VALUES</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+
+<hr>
+
+
+<a name="NAME"></a>
+<h2>NAME</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">MiniLibX -
+Simple Graphical Interface Library for students</p>
+
+<a name="SYNOPSYS"></a>
+<h2>SYNOPSYS</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">#include
+&lt;mlx.h&gt;</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>void *</i>
+<b><br>
+mlx_init</b> ();</p>
+
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">MiniLibX is an
+easy way to create graphical software, without any
+X-Window/Cocoa programming knowledge. It provides simple
+window creation, a drawing tool, image and basic events
+management.</p>
+
+<a name="BSD/LINUX X-WINDOW CONCEPT"></a>
+<h2>BSD/LINUX X-WINDOW CONCEPT</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">X-Window is a
+network-oriented graphical system for Unix. It is based on
+two main parts: <br>
+On one side, your software wants to draw something on the
+screen and/or get keyboard &amp; mouse entries. <br>
+On the other side, the X-Server manages the screen, keyboard
+and mouse (It is often refered to as a &quot;display&quot;).
+<br>
+A network connection must be established between these two
+entities to send drawing orders (from the software to the
+X-Server), and keyboard/mouse events (from the X-Server to
+the software).</p>
+
+<a name="MACOSX CONCEPT"></a>
+<h2>MACOSX CONCEPT</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The MacOSX
+operating system handle graphical access to the screen (or
+&quot;display&quot;). <br>
+On one side, your software wants to draw something on the
+screen and/or get keyboard &amp; mouse entries. <br>
+On the other side, the underlying MacOSX graphical framework
+that handles the screen, the windowing system, keyboard and
+mouse. <br>
+A connection between these two entities must be
+established.</p>
+
+<a name="INCLUDE FILE"></a>
+<h2>INCLUDE FILE</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>mlx.h</b>
+should be included for a correct use of the MiniLibX API. It
+only contains function prototypes, no structure is
+needed.</p>
+
+<a name="LIBRARY FUNCTIONS"></a>
+<h2>LIBRARY FUNCTIONS</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">First of all,
+you need to initialize the connection between your software
+and the display. Once this connection is established,
+you&rsquo;ll be able to use other MiniLibX functions to send
+the graphical orders, like &quot;I want to draw a yellow
+pixel in this window&quot; or &quot;did the user hit a
+key?&quot;.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The
+<b>mlx_init</b> function will create this connection. No
+parameters are needed, ant it will return a <i>void *</i>
+identifier, used for further calls to the library
+routines.</p>
+
+<p style="margin-left:11%; margin-top: 1em">All other
+MiniLibX functions are described in the following man
+pages:</p>
+
+<table width="100%" border=0 rules="none" frame="void"
+       cellspacing="0" cellpadding="0">
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="21%">
+
+
+
+<p style="margin-top: 1em" valign="top"><b>mlx_new_window</b></p> </td>
+<td width="10%"></td>
+<td width="50%">
+
+
+<p style="margin-top: 1em" valign="top">: manage
+windows</p> </td>
+<td width="8%">
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="21%">
+
+
+
+<p style="margin-top: 1em" valign="top"><b>mlx_pixel_put</b></p> </td>
+<td width="10%"></td>
+<td width="50%">
+
+
+<p style="margin-top: 1em" valign="top">: draw inside
+window</p> </td>
+<td width="8%">
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="21%">
+
+
+
+<p style="margin-top: 1em" valign="top"><b>mlx_new_image</b></p> </td>
+<td width="10%"></td>
+<td width="50%">
+
+
+<p style="margin-top: 1em" valign="top">: manipulate
+images</p> </td>
+<td width="8%">
+</td>
+<tr valign="top" align="left">
+<td width="11%"></td>
+<td width="21%">
+
+
+
+<p style="margin-top: 1em" valign="top"><b>mlx_loop</b></p> </td>
+<td width="10%"></td>
+<td width="50%">
+
+
+<p style="margin-top: 1em" valign="top">: handle keyboard
+or mouse events</p></td>
+<td width="8%">
+</td>
+</table>
+
+<a name="LINKING MiniLibX on BSD/Linux and X-Window"></a>
+<h2>LINKING MiniLibX on BSD/Linux and X-Window</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">To use MiniLibX
+functions, you&rsquo;ll need to link your software with
+several libraries, including the MiniLibX library itself. To
+do this, simply add the following arguments at linking
+time:</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>-lmlx -lXext
+-lX11</b></p>
+
+<p style="margin-left:11%; margin-top: 1em">You may also
+need to specify the path to these libraries, using the
+<b>-L</b> flag.</p>
+
+<a name="LINKING MiniLibX on MACOSX"></a>
+<h2>LINKING MiniLibX on MACOSX</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">To use MiniLibX
+functions, you&rsquo;ll need to link your software with the
+MiniLibX library, and several system frameworks:</p>
+
+<p style="margin-left:11%; margin-top: 1em"><b>-lmlx
+-framework OpenGL -framework AppKit</b></p>
+
+<p style="margin-left:11%; margin-top: 1em">You may also
+need to specify the path to the MiniLibX library, using the
+<b>-L</b> flag.</p>
+
+<a name="RETURN VALUES"></a>
+<h2>RETURN VALUES</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">If
+<b>mlx_init()</b> fails to set up the connection to the
+graphical system, it will return NULL, otherwise a non-null
+pointer is returned as a connection identifier.</p>
+
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em">mlx_new_window(3),
+mlx_pixel_put(3), mlx_new_image(3), mlx_loop(3)</p>
+
+<a name="AUTHOR"></a>
+<h2>AUTHOR</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright ol@ -
+2002-2015 - Olivier Crouzet</p>
+<hr>
+</body>
+</html>

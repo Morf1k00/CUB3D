@@ -1,0 +1,196 @@
+<!-- Creator     : groff version 1.19.2 -->
+<!-- CreationDate: Fri Dec 15 10:48:39 2023 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p     { margin-top: 0; margin-bottom: 0; }
+       pre   { margin-top: 0; margin-bottom: 0; }
+       table { margin-top: 0; margin-bottom: 0; }
+</style>
+<title>MiniLibX</title>
+
+</head>
+<body>
+
+<h1 align=center>MiniLibX</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSYS">SYNOPSYS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#STORING COLOR INSIDE IMAGES">STORING COLOR INSIDE IMAGES</a><br>
+<a href="#XPM IMAGES">XPM IMAGES</a><br>
+<a href="#RETURN VALUES">RETURN VALUES</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+
+<hr>
+
+
+<a name="NAME"></a>
+<h2>NAME</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">MiniLibX -
+Manipulating images</p>
+
+<a name="SYNOPSYS"></a>
+<h2>SYNOPSYS</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><i>void *</i>
+<b><br>
+mlx_new_image</b> ( <i>void *mlx_ptr, int width, int
+height</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>char *</i>
+<b><br>
+mlx_get_data_addr</b> ( <i>void *img_ptr, int
+*bits_per_pixel, int *size_line, int *endian</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>int</i>
+<b><br>
+mlx_put_image_to_window</b> ( <i>void *mlx_ptr, void
+*win_ptr, void *img_ptr, int x, int y</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>unsigned
+int</i> <b><br>
+mlx_get_color_value</b> ( <i>void *mlx_ptr, int color</i>
+);</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>void *</i>
+<b><br>
+mlx_xpm_to_image</b> ( <i>void *mlx_ptr, char **xpm_data,
+int *width, int *height</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>void *</i>
+<b><br>
+mlx_xpm_file_to_image</b> ( <i>void *mlx_ptr, char
+*filename, int *width, int *height</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>int</i>
+<b><br>
+mlx_destroy_image</b> ( <i>void *mlx_ptr, void *img_ptr</i>
+);</p>
+
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>mlx_new_image</b>
+() creates a new image in memory. It returns a <i>void *</i>
+identifier needed to manipulate this image later. It only
+needs the size of the image to be created, using the
+<i>width</i> and <i>height</i> parameters, and the
+<i>mlx_ptr</i> connection identifier (see the <b>mlx</b>
+manual).</p>
+
+<p style="margin-left:11%; margin-top: 1em">The user can
+draw inside the image (see below), and can dump the image
+inside a specified window at any time to display it on the
+screen. This is done using <b>mlx_put_image_to_window</b>
+(). Three identifiers are needed here, for the connection to
+the display, the window to use, and the image (respectively
+<i>mlx_ptr</i> , <i>win_ptr</i> and <i>img_ptr</i> ). The (
+<i>x</i> , <i>y</i> ) coordinates define where the image
+should be placed in the window.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>mlx_get_data_addr</b>
+() returns information about the created image, allowing a
+user to modify it later. The <i>img_ptr</i> parameter
+specifies the image to use. The three next parameters should
+be the addresses of three different valid integers.
+<i>bits_per_pixel</i> will be filled with the number of bits
+needed to represent a pixel color (also called the depth of
+the image). <i>size_line</i> is the number of bytes used to
+store one line of the image in memory. This information is
+needed to move from one line to another in the image.
+<i>endian</i> tells you wether the pixel color in the image
+needs to be stored in little endian ( <i>endian</i> == 0),
+or big endian ( <i>endian</i> == 1).</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>mlx_get_data_addr</b>
+returns a <i>char *</i> address that represents the begining
+of the memory area where the image is stored. From this
+adress, the first <i>bits_per_pixel</i> bits represent the
+color of the first pixel in the first line of the image. The
+second group of <i>bits_per_pixel</i> bits represent the
+second pixel of the first line, and so on. Add
+<i>size_line</i> to the adress to get the begining of the
+second line. You can reach any pixels of the image that
+way.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>mlx_destroy_image</b>
+destroys the given image ( <i>img_ptr</i> ).</p>
+
+<a name="STORING COLOR INSIDE IMAGES"></a>
+<h2>STORING COLOR INSIDE IMAGES</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Depending on
+the display, the number of bits used to store a pixel color
+can change. The user usually represents a color in RGB mode,
+using one byte for each component (see <b>mlx_pixel_put</b>
+manual). This must be translated to fit the
+<i>bits_per_pixel</i> requirement of the image, and make the
+color understandable to the graphical system. That is the
+purpose of the <b>mlx_get_color_value</b> () function. It
+takes a standard RGB <i>color</i> parameter, and returns an
+<i>unsigned int</i> value. The <i>bits_per_pixel</i> least
+significant bits of this value can be stored in the
+image.</p>
+
+<p style="margin-left:11%; margin-top: 1em">Keep in mind
+that the least significant bits position depends on the
+local computer&rsquo;s endian. If the endian of the image
+(in fact the endian of the X-Server&rsquo;s computer for
+remote X11 display) differs from the local endian, then the
+value should be transformed before being used.</p>
+
+<a name="XPM IMAGES"></a>
+<h2>XPM IMAGES</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The
+<b>mlx_xpm_to_image</b> () and <b>mlx_xpm_file_to_image</b>
+() functions will create a new image the same way. They will
+fill it using the specified <i>xpm_data</i> or
+<i>filename</i> , depending on which function is used. Note
+that MiniLibX does not use the standard Xpm library to deal
+with xpm images. You may not be able to read all types of
+xpm images. It however handles transparency.</p>
+
+<a name="RETURN VALUES"></a>
+<h2>RETURN VALUES</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The three
+functions that create images, <b>mlx_new_image()</b> ,
+<b>mlx_xpm_to_image()</b> and <b>mlx_xpm_file_to_image()</b>
+, will return NULL if an error occurs. Otherwise they return
+a non-null pointer as an image identifier.</p>
+
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">mlx(3),
+mlx_new_window(3), mlx_pixel_put(3), mlx_loop(3)</p>
+
+<a name="AUTHOR"></a>
+<h2>AUTHOR</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright ol@ -
+2002-2015 - Olivier Crouzet</p>
+<hr>
+</body>
+</html>

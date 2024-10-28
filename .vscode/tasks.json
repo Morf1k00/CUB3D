@@ -26,7 +26,8 @@
 		  "-lmlx",
 		  "-lXext",
 		  "-lX11",
-		  "-lm"
+		  "-lm",
+		  "-Imlx"
 		],
 		"group": {
 		  "kind": "build",
