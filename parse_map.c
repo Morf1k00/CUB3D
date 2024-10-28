@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/25 12:07:42 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/28 21:44:48 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	count_width(char *line, t_data *dat)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = ft_strlen(line);
 	j = count_tabs(line);
@@ -39,14 +39,14 @@ void	count_line(char *map_path, t_data *dat)
 	line = get_next_line(fd);
 	while (line)
 	{
-		if (line[0]== '1' || line[0] == '0' || line[0] == ' ' || line[0] == '\t')
+		if (line[0] == '1' || line[0] == '0' || line[0] == ' '
+			|| line[0] == '\t')
 		{
 			count_width(line, dat);
 			i++;
 		}
 		free(line);
 		line = get_next_line(fd);
-		
 	}
 	close(fd);
 	dat->map_height = i;
@@ -72,7 +72,7 @@ void	open_file(char *map_path, t_data *dat)
 	int		fd;
 	char	*line;
 	int		i;
-	char *new_line;
+	char	*new_line;
 
 	i = 0;
 	count_line(map_path, dat);
@@ -80,11 +80,11 @@ void	open_file(char *map_path, t_data *dat)
 	printf("%i\n", dat->map_height);
 	dat->map = malloc(sizeof(char *) * (dat->map_height + 1));
 	line = get_next_line(fd);
-	while (line)	
+	while (line)
 	{
-		if (line[0]== '1' || line[0] == '0' || line[0] == ' ' || line[0] == '\t')
+		if (line[0] == '1' || line[0] == '0' || line[0] == ' '
+			|| line[0] == '\t')
 		{
-			
 			dat->map[i] = ft_strdup(line);
 			i++;
 			free(line);
@@ -100,7 +100,7 @@ void	open_file(char *map_path, t_data *dat)
 	close(fd);
 }
 
-void check_pos(t_data *data, int i, int j)
+void	check_pos(t_data *data, int i, int j)
 {
 	if (data->map[i][j] == 'S')
 		data->player_angle = 0;
@@ -112,7 +112,7 @@ void check_pos(t_data *data, int i, int j)
 		data->player_angle = 270;
 }
 
-void change_pos(t_data *data, int i, int j)
+void	change_pos(t_data *data, int i, int j)
 {
 	if (data->map[i][j - 1] == '1')
 		data->player_x = (float)j + 0.5;
@@ -122,7 +122,6 @@ void change_pos(t_data *data, int i, int j)
 		data->player_y = (float)i + 0.5;
 	else
 		data->player_y = (float)i;
-	
 }
 
 void	player_position(t_data *dat)
@@ -142,7 +141,7 @@ void	player_position(t_data *dat)
 				// check_pos(dat, i, j);
 				change_pos(dat, i, j);
 				dat->player_x = (float)j + 0.5;
-dat->player_y = (float)i + 0.5;
+				dat->player_y = (float)i + 0.5;
 				dat->map[i][j] = '0';
 				return ;
 			}
