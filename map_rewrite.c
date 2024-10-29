@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:36 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/29 15:39:54 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/29 16:34:41 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	count_tabs(char *line)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while (*line)
@@ -23,16 +23,16 @@ int	count_tabs(char *line)
 			count += 3;
 		line++;
 	}
-	return(count);
-} 
+	return (count);
+}
 
-void map_rewrite(t_data *data)
+void	map_rewrite(t_data *data)
 {
-	int y;
-	int x;
-	int z;
-	char *line;
-	int tabs;
+	int		y;
+	int		x;
+	int		z;
+	char	*line;
+	int		tabs;
 
 	y = 0;
 	while (y < data->map_height)
@@ -42,10 +42,11 @@ void map_rewrite(t_data *data)
 		tabs = count_tabs(data->map[y]);
 		line = (char *)malloc(sizeof(char) * (data->map_width + tabs + 1));
 		if (!line)
-			return;
+			return ;
 		while (z < data->map_width - 1)
 		{
-			if (data->map[y][x] && data->map[y][x] != '\n' && data->map[y][x] != '\0')
+			if (data->map[y][x] && data->map[y][x] != '\n'
+				&& data->map[y][x] != '\0')
 			{
 				if (data->map[y][x] == ' ')
 				{
@@ -58,7 +59,7 @@ void map_rewrite(t_data *data)
 					line[z++] = '0';
 					line[z++] = '0';
 					line[z] = '0';
-					x++; 
+					x++;
 				}
 				else
 					line[z++] = data->map[y][x++];
