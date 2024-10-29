@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:10:39 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/22 13:37:43 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/29 17:53:17 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ void	texture_assign(t_data *data)
 			data->render.wall_type = 0; // Восток
 		else
 			data->render.wall_type = 1; // Запад
-		wall_hit = data->player_y + data->render.perp_wall_dist * data->render.ray_dir_y;
+		wall_hit = data->player_y + data->render.perp_wall_dist
+			* data->render.ray_dir_y;
 	}
 	else // По оси Y (север или юг)
 	{
@@ -31,13 +32,16 @@ void	texture_assign(t_data *data)
 			data->render.wall_type = 2; // Север
 		else
 			data->render.wall_type = 3; // Юг
-		wall_hit = data->player_x + data->render.perp_wall_dist * data->render.ray_dir_x;
+		wall_hit = data->player_x + data->render.perp_wall_dist
+			* data->render.ray_dir_x;
 	}
 	// Сдвиг для корректного отображения текстуры
 	wall_hit -= floor(wall_hit);
-	data->render.tex_x = (int)(wall_hit * (double)data->wall_texture[data->render.wall_type].width);
+	data->render.tex_x = (int)(wall_hit
+			* (double)data->wall_texture[data->render.wall_type].width);
 	// Обработка возможных ошибок с координатами текстуры
-	if (data->render.tex_x < 0 || data->render.tex_x >= data->wall_texture[data->render.wall_type].width)
+	if (data->render.tex_x < 0 || data->render.tex_x
+		>= data->wall_texture[data->render.wall_type].width)
 		data->render.tex_x = 0;
 }
 
@@ -46,29 +50,34 @@ void	step_determination(t_data *data)
 	if (data->render.ray_dir_x < 0)
 	{
 		data->render.step_x = -1;
-		data->render.side_dist_x = (data->player_x - data->render.map_x) * data->render.delta_dist_x;
+		data->render.side_dist_x = (data->player_x - data->render.map_x)
+			* data->render.delta_dist_x;
 	}
 	else
 	{
 		data->render.step_x = 1;
-		data->render.side_dist_x = (data->render.map_x + 1.0 - data->player_x) * data->render.delta_dist_x;
+		data->render.side_dist_x = (data->render.map_x + 1.0 - data->player_x)
+			* data->render.delta_dist_x;
 	}
 	if (data->render.ray_dir_y < 0)
 	{
 		data->render.step_y = -1;
-		data->render.side_dist_y = (data->player_y - data->render.map_y) * data->render.delta_dist_y;
+		data->render.side_dist_y = (data->player_y - data->render.map_y)
+			* data->render.delta_dist_y;
 	}
 	else
 	{
 		data->render.step_y = 1;
-		data->render.side_dist_y = (data->render.map_y + 1.0 - data->player_y) * data->render.delta_dist_y;
+		data->render.side_dist_y = (data->render.map_y + 1.0 - data->player_y)
+			* data->render.delta_dist_y;
 	}
 }
 
 void	raydir_calculation(t_data *data, int x)
 {
 	// Рассчет угла луча
-	data->render.ray_angle = data->player_angle - (FOV / 2.0) + (x * (FOV / (float)WIDTH));
+	data->render.ray_angle = data->player_angle
+		- (FOV / 2.0) + (x * (FOV / (float)WIDTH));
 	data->render.ray_angle_rad = data->render.ray_angle * M_PI / 180.0;
 	data->render.ray_dir_x = cos(data->render.ray_angle_rad);
 	data->render.ray_dir_y = sin(data->render.ray_angle_rad);
@@ -98,7 +107,7 @@ void	wallhit_detection(t_data *data)
 		}
 		if (data->render.map_x < 0 || data->render.map_x >= data->map_width
 			|| data->render.map_y < 0 || data->render.map_y >= data->map_height)
-			break;
+			break ;
 		if (data->map[data->render.map_y][data->render.map_x] == '1')
 			data->render.hit = 1;
 	}
@@ -107,9 +116,11 @@ void	wallhit_detection(t_data *data)
 void	draw_calculation(t_data *data)
 {
 	if (data->render.side == 0)
-		data->render.perp_wall_dist = (data->render.map_x - data->player_x + (1 - data->render.step_x) / 2) / data->render.ray_dir_x;
+		data->render.perp_wall_dist = (data->render.map_x - data->player_x
+				+ (1 - data->render.step_x) / 2) / data->render.ray_dir_x;
 	else
-		data->render.perp_wall_dist = (data->render.map_y - data->player_y + (1 - data->render.step_y) / 2) / data->render.ray_dir_y;
+		data->render.perp_wall_dist = (data->render.map_y - data->player_y
+				+ (1 - data->render.step_y) / 2) / data->render.ray_dir_y;
 	if (data->render.perp_wall_dist > MAX_DISTANCE)
 		data->render.perp_wall_dist = MAX_DISTANCE;
 	data->render.wall_height = (int)(HEIGHT / data->render.perp_wall_dist);
@@ -124,12 +135,18 @@ void	draw_calculation(t_data *data)
 void	draw_walls(t_data *data, int x, int y)
 {
 	// Вычисление текстурной координаты Y
-	data->render.tex_y = (y - data->render.draw_start) * data->wall_texture[data->render.wall_type].height / (data->render.draw_end - data->render.draw_start);
+	data->render.tex_y = (y - data->render.draw_start)
+		* data->wall_texture[data->render.wall_type].height
+		/ (data->render.draw_end - data->render.draw_start);
 	// Проверка выхода за границы текстуры
-	if (data->render.tex_y >= 0 && data->render.tex_y < data->wall_texture[data->render.wall_type].height)
+	if (data->render.tex_y >= 0 && data->render.tex_y
+		< data->wall_texture[data->render.wall_type].height)
 	{
 		// Получение цвета из соответствующей текстуры
-		data->render.color = ((int *)data->wall_texture[data->render.wall_type].data)[data->render.tex_y * (data->wall_texture[data->render.wall_type].size_line / 4) + data->render.tex_x];
+		data->render.color = ((int *)data->wall_texture[data
+				->render.wall_type].data)[data->render.tex_y * (data
+				->wall_texture[data->render.wall_type].size_line / 4)
+			+ data->render.tex_x];
 		// Рисование пикселя на экране
 		((int *)data->data)[y * WIDTH + x] = data->render.color;
 	}
