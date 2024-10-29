@@ -6,7 +6,7 @@
 #    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/10/26 21:45:49 by oruban           ###   ########.fr        #
+#    Updated: 2024/10/29 18:09:48 by oruban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,3 +59,6 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+norm:
+	norminette $(MPATH_SRCS) $(HEADER_SRCS)
