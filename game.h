@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/24 14:05:13 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/29 16:03:10 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ typedef struct s_texture
 
 typedef struct s_render
 {
-	int 	texture_step;
-	int 	tex_pos;
+	int		texture_step;
+	int		tex_pos;
 	int		x;
 	int		y;
 	float	ray_angle;
@@ -121,9 +121,9 @@ void	load_textures(t_data *data);
 void	ft_raycast(t_data *data);
 void	check_map(t_data *data);
 int		ft_isspace(char c);
-void map_rewrite(t_data *data);
-int count_tabs(char *line);
-bool isMapClosed(t_data *data, int playerX, int playerY);
-void check_walls(t_data *data);
+void	map_rewrite(t_data *data);
+int		count_tabs(char *line);
+bool	isMapClosed(t_data *data, int playerX, int playerY);
+void	check_walls(t_data *data);
 
 #endif
