@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   map_rewrite.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:36 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/23 16:47:18 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:39:54 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-int count_tabs(char *line)
+int	count_tabs(char *line)
 {
 	int count;
 

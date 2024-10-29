@@ -3,39 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   file_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:22:42 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/22 14:50:56 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/29 15:45:24 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-int ft_isspace(char c)
+int	ft_isspace(char c)
 {
-    if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f' || c == '\r')
-        return 1;
-    else
-        return 0;
+	if (c == ' ' || c == '\t' || c == '\n' || c == '\v' || c == '\f'
+		|| c == '\r')
+		return (1);
+	else
+		return (0);
 }
 
-char *ft_strtrim(char *str)
+char	*ft_strtrim(char *str)
 {
-    char *end;
+	char	*end;
 
-    while (ft_isspace((unsigned char)*str))
+	while (ft_isspace((unsigned char)*str))
 		str++;
-    if (*str == 0)
-        return (ft_strdup(""));
-    end = str + ft_strlen(str) - 1;
-    while (end > str && ft_isspace((unsigned char)*end))
+	if (*str == 0)
+		return (ft_strdup(""));
+	end = str + ft_strlen(str) - 1;
+	while (end > str && ft_isspace((unsigned char)*end))
 		end--;
-    *(end + 1) = '\0';
-    return (str);
+	*(end + 1) = '\0';
+	return (str);
 }
 
-void check_wall_texture(t_data *data, char *line)
+void	check_wall_texture(t_data *data, char *line)
 {
 	if (line[0] == 'N' && line[1] == 'O')
 		data->wall_texture[0].path = ft_strdup(ft_strtrim(line + 3));
@@ -47,7 +48,7 @@ void check_wall_texture(t_data *data, char *line)
 		data->wall_texture[3].path = ft_strdup(ft_strtrim(line + 3));
 }
 
-void check_floor_ceiling_color(t_data *data, char *line)
+void	check_floor_ceiling_color(t_data *data, char *line)
 {
 	int		i;
 	int		color;
@@ -64,10 +65,10 @@ void check_floor_ceiling_color(t_data *data, char *line)
 		data->color_c = color;
 }
 
-void finder_coordinate(t_data *data, char *file_name)
+void	finder_coordinate(t_data *data, char *file_name)
 {
-	int fd;
-	char *line;
+	int		fd;
+	char	*line;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
@@ -76,9 +77,9 @@ void finder_coordinate(t_data *data, char *file_name)
 		return ;
 	}
 	line = get_next_line(fd);
-	while(line)
+	while (line)
 	{
-		if (line[0] =='N' || line[0] == 'S'
+		if (line[0] == 'N' || line[0] == 'S'
 			|| line[0] == 'W' || line[0] == 'E')
 			check_wall_texture(data, line);
 		if (line[0] == 'F' || line[0] == 'C')
