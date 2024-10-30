@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 21:03:20 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/30 21:14:34 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,13 +99,11 @@ void	*ft_memset(void *b, int c, size_t len)
 	dat->map[i] = NULL;
 	close(fd);
 } */
-
 /* 
 	The open_file function in your cub3D project is responsible for opening a 
 	map file, reading its contents, and storing the relevant lines in the 
 	dat->map array. - refacktored by 3010 roi
  */
-
 void	open_file(char *map_path, t_data *dat)
 {
 	int		fd;
@@ -132,7 +130,7 @@ void	open_file(char *map_path, t_data *dat)
 	close(fd);
 }
 
-void	check_pos(t_data *data, int i, int j)
+/* void	check_pos(t_data *data, int i, int j)
 {
 	if (data->map[i][j] == 'S')
 		data->player_angle = 0;
@@ -142,7 +140,7 @@ void	check_pos(t_data *data, int i, int j)
 		data->player_angle = 180;
 	if (data->map[i][j] == 'N')
 		data->player_angle = 270;
-}
+} */
 
 void	change_pos(t_data *data, int i, int j)
 {
@@ -187,7 +185,6 @@ void	change_pos(t_data *data, int i, int j)
 		return ;
 	}
 } */
-
 /* 
 	The  function  is responsible for finding the initial position of the player
 	on the map, setting the player's coordinates, and updating the map to
