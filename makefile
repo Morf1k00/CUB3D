@@ -6,7 +6,7 @@
 #    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/10/29 18:09:48 by oruban           ###   ########.fr        #
+#    Updated: 2024/10/30 16:46:29 by oruban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ HEADER_SRCS = game.h
 HEADER =  $(HEADER_SRCS)
 
 # Source files
-MPATH_SRCS = cub3d.c movement.c render.c movements.c utils.c utils2.c parse_map.c get_next_line.c file_check.c ft_split.c map_checker.c map_rewrite.c
+MPATH_SRCS = cub3d.c movement.c render.c render2.c movements.c utils.c utils2.c parse_map.c get_next_line.c file_check.c ft_split.c map_checker.c map_rewrite.c
 MPATH_DIR = sourse/
 MPATH =  $(MPATH_SRCS)
 OBJ_M = $(MPATH:.c=.o)
