@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:10:39 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 11:00:41 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/30 12:59:04 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	texture_assign(t_data *data)
 /* 
 	 Determines the step direction and initial side distance for 
 	 the ray. - roi 1030
+	 28 lines
  */
 void	step_determination(t_data *data)
 {
