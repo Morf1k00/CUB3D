@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/28 08:46:11 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/30 10:49:02 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,32 @@ void	load_textures(t_data *data)
 {
 	int	width;
 	int	height;
-	int i;
+	int	i;
 
 	i = 0;
-    while (i < 4)
-    {
-        data->wall_texture[i].img = mlx_xpm_file_to_image(data->mlx, data->wall_texture[i].path, &width, &height);
-        if (!data->wall_texture[i].img)
-        {
-            printf("Error loading texture file: %s\n", data->wall_texture[i].path);
-            exit(EXIT_FAILURE);
-        }
-        data->wall_texture[i].width = width;
-        data->wall_texture[i].height = height;
-        data->wall_texture[i].data = mlx_get_data_addr(data->wall_texture[i].img,
-                                                        &data->wall_texture[i].bpp,
-                                                        &data->wall_texture[i].size_line,
-                                                        &data->wall_texture[i].endian);
+	while (i < 4)
+	{
+		data->wall_texture[i].img = mlx_xpm_file_to_image(data->mlx,
+				data->wall_texture[i].path, &width, &height);
+		if (!data->wall_texture[i].img)
+		{
+			printf("Error loading texture file: %s\n",
+				data->wall_texture[i].path);
+			exit(EXIT_FAILURE);
+		}
+		data->wall_texture[i].width = width;
+		data->wall_texture[i].height = height;
+		data->wall_texture[i].data = mlx_get_data_addr(
+				data->wall_texture[i].img, &data->wall_texture[i].bpp,
+				&data->wall_texture[i].size_line,
+				&data->wall_texture[i].endian);
 		i++;
-    }
+	}
 }
 
+/* 
+	 Clears the screen by filling it with the ceiling and floor colors.-1030 roi
+ */
 void	clear_screen(t_data *data)
 {
 	int	x;
@@ -68,7 +73,6 @@ void	clear_screen(t_data *data)
 
 int	game_loop(t_data *data)
 {
-	
 	ft_raycast(data);
 	mlx_put_image_to_window(data->mlx, data->win, data->img, 0, 0);
 	return (0);
@@ -77,7 +81,7 @@ int	game_loop(t_data *data)
 void	init_data(t_data *data)
 {
 	data->mlx = mlx_init();
- 		if (!data->mlx)
+	if (!data->mlx)
 		fprintf(stderr, "Failed to initialize MLX\n");
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!data->win)
@@ -94,12 +98,14 @@ void	init_data(t_data *data)
 int	main(int arc, char **arv)
 {
 	t_data	data;
+	int		i;
 
+	i = -1;
 	init_data(&data);
 	open_file(arv[1], &data);
-	printf("%i\n", data.map_width);;
+	printf("%i\n", data.map_width);
 	map_rewrite(&data);
-	for (int i = 0; i < data.map_height; i++)
+	while (++i < data.map_height)
 		printf("%s", data.map[i]);
 	finder_coordinate(&data, arv[1]);
 	player_position(&data);

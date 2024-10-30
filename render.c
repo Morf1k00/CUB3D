@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:10:39 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 17:04:38 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/30 16:45:02 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,37 @@ void	step_determination(t_data *data)
 	if (data->render.ray_dir_x < 0)
 	{
 		data->render.step_x = -1;
-		data->render.side_dist_x = (data->player_x - data->render.map_x) * data->render.delta_dist_x;
+		data->render.side_dist_x = (data->player_x - data->render.map_x)
+			* data->render.delta_dist_x;
 	}
 	else
 	{
 		data->render.step_x = 1;
-		data->render.side_dist_x = (data->render.map_x + 1.0 - data->player_x) * data->render.delta_dist_x;
+		data->render.side_dist_x = (data->render.map_x + 1.0 - data->player_x)
+			* data->render.delta_dist_x;
 	}
 	if (data->render.ray_dir_y < 0)
 	{
 		data->render.step_y = -1;
-		data->render.side_dist_y = (data->player_y - data->render.map_y) * data->render.delta_dist_y;
+		data->render.side_dist_y = (data->player_y - data->render.map_y)
+			* data->render.delta_dist_y;
 	}
 	else
 	{
 		data->render.step_y = 1;
-		data->render.side_dist_y = (data->render.map_y + 1.0 - data->player_y) * data->render.delta_dist_y;
+		data->render.side_dist_y = (data->render.map_y + 1.0 - data->player_y)
+			* data->render.delta_dist_y;
 	}
 }
 
+/* 
+Calculates the direction of the ray for the current vertical stripe. 1030 - roi
+ */
+// Рассчет угла луча
 void	raydir_calculation(t_data *data, int x)
 {
-	// Рассчет угла луча
-	data->render.ray_angle = data->player_angle - (FOV / 2.0) + (x * (FOV / (float)WIDTH));
+	data->render.ray_angle = data->player_angle
+		- (FOV / 2.0) + (x * (FOV / (float)WIDTH));
 	data->render.ray_angle_rad = data->render.ray_angle * M_PI / 180.0;
 	data->render.ray_dir_x = cos(data->render.ray_angle_rad);
 	data->render.ray_dir_y = sin(data->render.ray_angle_rad);
@@ -55,6 +63,10 @@ void	raydir_calculation(t_data *data, int x)
 	data->render.hit = 0;
 }
 
+/* 
+	Performs the Digital Differential Analysis (DDA) algorithm to find where
+	 the ray hits a wall. - roi 1030
+ */
 void	wallhit_detection(t_data *data)
 {
 	data->render.hit = 0;
@@ -74,18 +86,24 @@ void	wallhit_detection(t_data *data)
 		}
 		if (data->render.map_x < 0 || data->render.map_x >= data->map_width
 			|| data->render.map_y < 0 || data->render.map_y >= data->map_height)
-			break;
+			break ;
 		if (data->map[data->render.map_y][data->render.map_x] == '1')
 			data->render.hit = 1;
 	}
 }
 
+/* 
+	Calculates the distance to the wall and the height of the wall slice 
+	to be drawn. - roi 1030
+ */
 void	draw_calculation(t_data *data)
 {
 	if (data->render.side == 0)
-		data->render.perp_wall_dist = (data->render.map_x - data->player_x + (1 - data->render.step_x) / 2) / data->render.ray_dir_x;
+		data->render.perp_wall_dist = (data->render.map_x - data->player_x
+				+ (1 - data->render.step_x) / 2) / data->render.ray_dir_x;
 	else
-		data->render.perp_wall_dist = (data->render.map_y - data->player_y + (1 - data->render.step_y) / 2) / data->render.ray_dir_y;
+		data->render.perp_wall_dist = (data->render.map_y - data->player_y
+				+ (1 - data->render.step_y) / 2) / data->render.ray_dir_y;
 	if (data->render.perp_wall_dist > MAX_DISTANCE)
 		data->render.perp_wall_dist = MAX_DISTANCE;
 	data->render.wall_height = (int)(HEIGHT / data->render.perp_wall_dist);

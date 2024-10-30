@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 17:08:42 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/30 16:43:38 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,54 +46,59 @@ typedef struct s_texture
 
 typedef struct s_render
 {
-	int 	texture_step;
-	int 	tex_pos;
-	int		x;
-	int		y;
-	float	ray_angle;
-	float	ray_angle_rad;
-	float	ray_dir_x;
-	float	ray_dir_y;
-	float	delta_dist_x;
-	float	delta_dist_y;
-	int		map_x;
-	int		map_y;
-	float	side_dist_x;
-	float	side_dist_y;
-	int		step_x;
-	int		step_y;
-	int		side;
-	int		hit;
-	float	wall_x;
-	float	perp_wall_dist;
-	int		wall_height;
-	int		draw_start;
-	int		draw_end;
-	int		wall_type;
-	int		tex_y;
-	int		tex_x;
-	int		color;
+	int		texture_step;	/* Stp sz 4 texture mapping, determines how much 
+							2 step in the txtre 4 each pixel drawn */
+	int		tex_pos;	// Position in the texture
+	int		x;	// Current x-coordinate in the rendering process
+	int		y; // Current y-coordinate in the rendering process
+	float	ray_angle;	// Angle of the current ray
+	float	ray_angle_rad;	// Angle of the current ray in radians
+	float	ray_dir_x;	// Direction of the ray along the x-axis
+	float	ray_dir_y;	// Direction of the ray along the y-axis
+	float	delta_dist_x;	// Distance 2 t next x-side in t map frm t crrnt pos
+	float	delta_dist_y;	// Distance 2 t next y-side in t map frm t crrnt pos
+	int		map_x;	// Current x-coordinate in the map
+	int		map_y;	// Current y-coordinate in the map
+	float	side_dist_x;	//Distances to the next x-side ...
+	float	side_dist_y;	//...y-side in the map from the current position.
+	int		step_x;	// Step direction along the x-axis (1 or -1)
+	int		step_y;	// Step direction along the y-axis (1 or -1)
+	int		side;	// Indicates whether th ray hit a vertical or hrizntl wall
+	int		hit;	// Indicates whether a wall was hit (1 if hit, 0 otherwise)
+	float	wall_x;	// Exact x-coordinate where the wall was hit
+	float	perp_wall_dist;	// Perpendicular distance from the player 2 th wall
+	int		wall_height;	// Height of the wall slice to be drawn
+	int		draw_start;	// Starting y-coordinate for drawing the wall slice
+	int		draw_end;	// Ending y-coordinate for drawing the wall slice
+	int		wall_type;	// Type of wall (used for selecting the texture)
+	int		tex_y;	// y-coordinate in the texture
+	int		tex_x;	// x-coordinate in the texture
+	int		color;	// Color of the current pixel
 }			t_render;
 
+/* 
+	 data structure that holds all the necessary information for the game's
+	 state and rendering. - roi 1030
+ */
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*data;
-	int			bpp;
-	int			size_line;
-	int			endian;
-	float		player_angle;
-	float		player_x;
-	float		player_y;
-	char		**map;
-	int			map_width;
-	int			map_height;
-	t_texture	wall_texture[4];
-	int			color_f;	
-	int			color_c;
-	t_render	render;
+	void		*mlx;	// Pointer to the MLX instance (MiniLibX library)
+	void		*win;	// Pointer to the window instance created by MLX
+	void		*img;	// Pointer to the image instance created by MLX
+	char		*data;	// Pointer to the image data
+	int			bpp;	// Bits per pixel (color depth of the image)	
+	int			size_line;	// Size of a line of pixels in bytes
+	int			endian;	// Endianness of the image data
+	float		player_angle;	// Angle of the player's view direction
+	float		player_x;	// Player's x-coordinate in the game world
+	float		player_y;	// Player's y-coordinate in the game world
+	char		**map;		// 2D array representing the game map
+	int			map_width;	// Width of the game map
+	int			map_height;	// Height of the game map
+	t_texture	wall_texture[4]; // Array of textures for the walls (N, S, W, E)
+	int			color_f;	//color of floor
+	int			color_c;	//color of ceiling
+	t_render	render;		// Structure holding rendering-related data	
 }				t_data;
 
 void	clear_screen(t_data *data);
