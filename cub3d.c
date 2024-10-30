@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/28 20:34:39 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/30 10:49:02 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ void	load_textures(t_data *data)
 	}
 }
 
+/* 
+	 Clears the screen by filling it with the ceiling and floor colors.-1030 roi
+ */
 void	clear_screen(t_data *data)
 {
 	int	x;

@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/29 16:03:10 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/30 11:26:26 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,25 +75,29 @@ typedef struct s_render
 	int		color;
 }			t_render;
 
+/* 
+	 data structure that holds all the necessary information for the game's
+	 state and rendering. - roi 1030
+ */
 typedef struct s_data
 {
-	void		*mlx;
-	void		*win;
-	void		*img;
-	char		*data;
-	int			bpp;
-	int			size_line;
-	int			endian;
-	float		player_angle;
-	float		player_x;
-	float		player_y;
-	char		**map;
-	int			map_width;
-	int			map_height;
-	t_texture	wall_texture[4];
-	int			color_f;	
-	int			color_c;
-	t_render	render;
+	void		*mlx;	// Pointer to the MLX instance (MiniLibX library)
+	void		*win;	// Pointer to the window instance created by MLX
+	void		*img;	// Pointer to the image instance created by MLX
+	char		*data;	// Pointer to the image data
+	int			bpp;	// Bits per pixel (color depth of the image)	
+	int			size_line;	// Size of a line of pixels in bytes
+	int			endian;	// Endianness of the image data
+	float		player_angle;	// Angle of the player's view direction
+	float		player_x;	// Player's x-coordinate in the game world
+	float		player_y;	// Player's y-coordinate in the game world
+	char		**map;		// 2D array representing the game map
+	int			map_width;	// Width of the game map
+	int			map_height;	// Height of the game map
+	t_texture	wall_texture[4]; // Array of textures for the walls (N, S, W, E)
+	int			color_f;	//color of floor
+	int			color_c;	//color of ceiling
+	t_render	render;		// Structure holding rendering-related data	
 }				t_data;
 
 void	clear_screen(t_data *data);
