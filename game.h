@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 13:56:21 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/30 16:43:38 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,5 +130,9 @@ void	map_rewrite(t_data *data);
 int		count_tabs(char *line);
 bool	isMapClosed(t_data *data, int playerX, int playerY);
 void	check_walls(t_data *data);
+
+/* render2.c  refactoring render.c - 1030 roi*/
+void	draw_walls(t_data *data, int x, int y);
+void	texture_assign(t_data *data);
 
 #endif
