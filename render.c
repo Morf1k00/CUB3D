@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:10:39 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 12:59:04 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/30 14:05:37 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -182,6 +182,11 @@ void	draw_calculation(t_data *data)
 		data->render.draw_end = HEIGHT - 1;
 }
 
+/*
+ The function is drawing a vertical slice of a wall on the screen.
+ This function uses texture mapping to apply the correct texture to the wall 
+ slice based on the calculated texture coordinates. - roi 1030
+
 void	draw_walls(t_data *data, int x, int y)
 {
 	// Вычисление текстурной координаты Y
@@ -198,6 +203,22 @@ void	draw_walls(t_data *data, int x, int y)
 				->wall_texture[data->render.wall_type].size_line / 4)
 			+ data->render.tex_x];
 		// Рисование пикселя на экране
+		((int *)data->data)[y * WIDTH + x] = data->render.color;
+	}
+}
+ */
+void	draw_walls(t_data *data, int x, int y)
+{
+	data->render.tex_y = (y - data->render.draw_start)
+		* data->wall_texture[data->render.wall_type].height
+		/ (data->render.draw_end - data->render.draw_start);
+	if (data->render.tex_y >= 0 && data->render.tex_y
+		< data->wall_texture[data->render.wall_type].height)
+	{
+		data->render.color = ((int *)data->wall_texture[data
+				->render.wall_type].data)[data->render.tex_y * (data
+				->wall_texture[data->render.wall_type].size_line / 4)
+			+ data->render.tex_x];
 		((int *)data->data)[y * WIDTH + x] = data->render.color;
 	}
 }
