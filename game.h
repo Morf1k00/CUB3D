@@ -6,13 +6,16 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 16:43:38 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/31 18:08:09 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
+# include "libft/libft.h"
+# include "libft/ft_printf/ft_printf.h"
+# include "libft/gnl/get_next_line.h"
 # include "mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
@@ -113,15 +116,15 @@ void	open_file(char *map_path, t_data *dat);
 void	maps_checker(t_data *dat);
 void	player_position(t_data *dat);
 
-int		ft_strlen(const char *s);
-char	*ft_strdup(const char *src);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-char	*ft_strchr(const char *s, int c);
-char	*ft_strjoin(char const *s1, char const *s2);
+// int		ft_strlen(const char *s);
+// char	*ft_strdup(const char *src);
+// char	*ft_substr(char const *s, unsigned int start, size_t len);
+// char	ft_strlcpy(char *dst, const char *src, size_t dstsize);
+// char	*ft_strchr(const char *s, int c);
+// char	*ft_strjoin(char const *s1, char const *s2);
 void	finder_coordinate(t_data *data, char *file_name);
-int		ft_atoi(const char *str);
-char	**ft_split(char const *s, char c);
+// int		ft_atoi(const char *str);
+// char	**ft_split(char const *s, char c);
 void	load_textures(t_data *data);
 void	ft_raycast(t_data *data);
 void	check_map(t_data *data);

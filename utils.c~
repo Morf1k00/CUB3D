@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:50:47 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/10 16:07:51 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/31 16:38:03 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	*ft_calloc(size_t count, size_t size)
 	return (mem);
 }
 
-char	ft_strlcpy(char *dst, const char *src, size_t dstsize)
+/* char	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
 	size_t	i;
 
@@ -55,7 +55,7 @@ char	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 	}
 	dst[i] = '\0';
 	return (ft_strlen(src));
-}
+} */
 
 char	*ft_strchr(const char *s, int c)
 {
