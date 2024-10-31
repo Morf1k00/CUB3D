@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 21:14:34 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/31 17:47:18 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	count_line(char *map_path, t_data *dat)
 	dat->map_height = i;
 }
 
-void	*ft_memset(void *b, int c, size_t len)
+/* void	*ft_memset(void *b, int c, size_t len)
 {
 	size_t			i;
 	unsigned char	*str;
@@ -65,7 +65,7 @@ void	*ft_memset(void *b, int c, size_t len)
 		i++;
 	}
 	return (b);
-}
+} */
 
 /* void	open_file(char *map_path, t_data *dat)
 {

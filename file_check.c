@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:22:42 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/29 15:45:24 by oruban           ###   ########.fr       */
+/*   Updated: 2024/10/31 19:34:58 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_isspace(char c)
 		return (0);
 }
 
-char	*ft_strtrim(char *str)
+char	*ft_strtrim1(char *str)
 {
 	char	*end;
 
@@ -39,14 +39,26 @@ char	*ft_strtrim(char *str)
 void	check_wall_texture(t_data *data, char *line)
 {
 	if (line[0] == 'N' && line[1] == 'O')
-		data->wall_texture[0].path = ft_strdup(ft_strtrim(line + 3));
+		data->wall_texture[0].path = ft_strdup(ft_strtrim1(line + 3));
 	else if (line[0] == 'S' && line[1] == 'O')
-		data->wall_texture[1].path = ft_strdup(ft_strtrim(line + 3));
+		data->wall_texture[1].path = ft_strdup(ft_strtrim1(line + 3));
 	else if (line[0] == 'W' && line[1] == 'E')
-		data->wall_texture[2].path = ft_strdup(ft_strtrim(line + 3));
+		data->wall_texture[2].path = ft_strdup(ft_strtrim1(line + 3));
 	else if (line[0] == 'E' && line[1] == 'A')
-		data->wall_texture[3].path = ft_strdup(ft_strtrim(line + 3));
+		data->wall_texture[3].path = ft_strdup(ft_strtrim1(line + 3));
 }
+
+/* void	check_wall_texture(t_data *data, char *line)
+{
+	if (line[0] == 'N' && line[1] == 'O')
+		data->wall_texture[0].path = ft_strdup(ft_strtrim(line + 3, " "));
+	else if (line[0] == 'S' && line[1] == 'O')
+		data->wall_texture[1].path = ft_strdup(ft_strtrim(line + 3, " "));
+	else if (line[0] == 'W' && line[1] == 'E')
+		data->wall_texture[2].path = ft_strdup(ft_strtrim(line + 3, " "));
+	else if (line[0] == 'E' && line[1] == 'A')
+		data->wall_texture[3].path = ft_strdup(ft_strtrim(line + 3, " "));
+} */
 
 void	check_floor_ceiling_color(t_data *data, char *line)
 {
