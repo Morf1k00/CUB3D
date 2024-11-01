@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/31 18:08:09 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/01 16:40:52 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,16 @@ typedef struct s_data
 	int			color_c;	//color of ceiling
 	t_render	render;		// Structure holding rendering-related data	
 }				t_data;
+
+/*
+ 	Refacturing. Structure 2 make less then 5 parameters 4 recursive funtion 
+	int f_fill(t_map_data *map_data, int p_y, int p_x) - roi 1101
+*/
+typedef struct s_map_data {
+    int height;
+    int width;
+    char **map;
+} t_map_data;
 
 void	clear_screen(t_data *data);
 int		handle_key_press(int keycode, t_data *data);
