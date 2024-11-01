@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:00:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/29 16:24:20 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/01 15:25:48 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	free_map(char **map_copy)
 	free(map_copy);
 }
 
-char	**copy_map(char **map)
+/* char	**copy_map(char **map)
 {
 	int		height;
 	char	**map_copy;
@@ -54,6 +54,39 @@ char	**copy_map(char **map)
 	}
 	map_copy[height] = NULL;
 	return (map_copy);
+} */
+
+/* 
+	The function creates a deep copy of a 2D array of strings (a map).
+	refactured by roi 1101
+ */
+char	**copy_map(char **map)
+{
+	int		height;
+	char	**map_copy;
+	int		i;
+
+	height = 0;
+	while (map[height] != NULL)
+		height++;
+	map_copy = malloc((height + 1) * sizeof(char *));
+	if (!map_copy)
+	{
+		perror("Failed to allocate memory for map copy");
+		exit(EXIT_FAILURE);
+	}
+	i = -1;
+	while (++i < height)
+	{
+		map_copy[i] = strdup(map[i]);
+		if (!map_copy[i])
+		{
+			perror("Failed to allocate memory for map row");
+			free_map(map_copy);
+			exit(EXIT_FAILURE);
+		}
+	}
+	return (map_copy[height] = NULL, map_copy);
 }
 
 void	exit_program(char *error)
@@ -62,6 +95,11 @@ void	exit_program(char *error)
 	exit(1);
 }
 
+/* 
+ 	function is a recursive flood fill algorithm that fills a region in a 2D map
+	with a specific character ('F'). refactured by roi 1101
+	
+*/
 int	f_fill(int h, int w, char **map, int p_y, int p_x)
 {
 	int	c_x;
@@ -80,6 +118,12 @@ int	f_fill(int h, int w, char **map, int p_y, int p_x)
 	return (0);
 }
 
+
+/* 
+	the function checks if the map in a game is closed or not.
+	refactured by roi 1101
+ */
+*/
 void	check_walls(t_data *data)
 {
 	char	**map;
