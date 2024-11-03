@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/01 16:50:13 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/03 17:30:24 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,7 @@ void	check_walls(t_data *data);
 /* render2.c  refactoring render.c - 1030 roi*/
 void	draw_walls(t_data *data, int x, int y);
 void	texture_assign(t_data *data);
+/*  count_tabs.c	called from map_rewrite.c -	refactured by roi 1103 */
+int		count_tabs(char *line);
 
 #endif

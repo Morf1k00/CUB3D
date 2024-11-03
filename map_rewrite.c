@@ -6,13 +6,13 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:36 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/01 18:08:17 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/03 17:25:41 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
 
-int	count_tabs(char *line)
+/* int	count_tabs(char *line)
 {
 	int	count;
 
@@ -24,14 +24,13 @@ int	count_tabs(char *line)
 		line++;
 	}
 	return (count);
-}
+} 
 
 
-/* 
-	The function rewrites the map in the game data structure, replacing spaces
-	with '0' characters and tabs with '0000' sequences. Refactured by roi 1101
-*/
-void	map_rewrite(t_data *data)
+	// The function rewrites the map in the game data structure, replacing spaces
+	// with '0' characters and tabs with '0000' sequences. Refactured by roi 1101
+
+ void	map_rewrite(t_data *data)
 {
 	int		y;
 	int		x;
@@ -74,4 +73,65 @@ void	map_rewrite(t_data *data)
 		data->map[y] = strdup(line);
 		free(line);
 	}
+} */
+
+void	handle_memory_allocation(char **line, int width_with_tabs)
+{
+	*line = (char *)malloc(sizeof(char) * (width_with_tabs + 1));
+	if (!*line)
+		exit(1);
+}
+
+void	append_zeros(char *line, int *z, int count)
+{
+	while (count-- > 0)
+		line[(*z)++] = '0';
+}
+
+void	replace_characters(t_data *data, char *line, int y, int *z)
+{
+	int	x;
+
+	x = -1;
+	while (*z < data->map_width - 1)
+	{
+		if (data->map[y][++x] && data->map[y][x] != '\n'
+			&& data->map[y][x] != '\0')
+		{
+			if (data->map[y][x] == ' ')
+				line[(*z)++] = '0';
+			else if (data->map[y][x] == '\t')
+				append_zeros(line, z, 4);
+			else
+				line[(*z)++] = data->map[y][x];
+		}
+		else
+			line[(*z)++] = '0';
+	}
+}
+
+void	process_line(t_data *data, int y)
+{
+	int		z;
+	int		tabs;
+	char	*line;
+
+	z = 0;
+	tabs = count_tabs(data->map[y]);
+	handle_memory_allocation(&line, data->map_width + tabs);
+	replace_characters(data, line, y, &z);
+	line[z++] = '\n';
+	line[z] = '\0';
+	free(data->map[y]);
+	data->map[y] = strdup(line);
+	free(line);
+}
+
+void	map_rewrite(t_data *data)
+{
+	int	y;
+
+	y = -1;
+	while (++y < data->map_height)
+		process_line(data, y);
 }
