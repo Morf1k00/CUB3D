@@ -6,7 +6,7 @@
 #    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/10/31 18:15:01 by oruban           ###   ########.fr        #
+#    Updated: 2024/11/03 17:26:11 by oruban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ MPATH_SRCS = 	cub3d.c			\
 				parse_map.c		\
 				file_check.c 	\
 				map_checker.c 	\
-				map_rewrite.c
+				map_rewrite.c	\
+				count_tabs.c
 # utils.c			\
 # utils2.c		\
 #  get_next_line.c	\
