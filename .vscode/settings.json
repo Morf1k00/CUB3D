@@ -8,6 +8,11 @@
 		"span": "c",
 		"*.c~": "c",
 		"libft.h": "c",
-		"get_next_line.h": "c"
+		"get_next_line.h": "c",
+		"ft_printf.h": "c",
+		"mlx.h": "c",
+		"fcntl.h": "c",
+		"string.h": "c",
+		"stdlib.h": "c"
 	}
 }
