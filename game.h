@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/04 15:05:22 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:08:37 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 // # define HEIGHT 1440
 // # define WIDTH 3200
 // # define HEIGHT 1800
-// # define WIDTH 3840 	
+// # define WIDTH 3840 
 // # define HEIGHT 2160
 # define FOV 60
 # define TILE_SIZE 64
