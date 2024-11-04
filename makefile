@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
+#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/11/03 17:26:11 by oruban           ###   ########.fr        #
+#    Updated: 2024/11/04 18:19:29 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,8 +73,8 @@ all: $(NAME)
 
 # Rule to remove object files
 clean:	
-	@$(RM) $(OBJ_M)
-	@make -C $(LIBFT_PATH) clean
+	@ $(RM) $(OBJ_M)
+	@ make -C $(LIBFT_PATH) clean
 #	make -C $(LIB_PATH) all bonus clean
 
 # Rule to remove object files and executable

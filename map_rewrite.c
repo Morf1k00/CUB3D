@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_rewrite.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:36 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/03 17:25:41 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/04 18:21:40 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,18 @@ void	append_zeros(char *line, int *z, int count)
 		line[(*z)++] = '0';
 }
 
+int	check_previous(t_data *data, int x, int y)
+{
+	if(x > 0)
+		if (data->map[y][x - 1] != '\t')
+			return (x % 4);
+	return(4);
+}
+
 void	replace_characters(t_data *data, char *line, int y, int *z)
 {
 	int	x;
+	int i;
 
 	x = -1;
 	while (*z < data->map_width - 1)
@@ -101,7 +110,10 @@ void	replace_characters(t_data *data, char *line, int y, int *z)
 			if (data->map[y][x] == ' ')
 				line[(*z)++] = '0';
 			else if (data->map[y][x] == '\t')
-				append_zeros(line, z, 4);
+			{
+				i = check_previous(data, x, y);
+				append_zeros(line, z, i);
+			}
 			else
 				line[(*z)++] = data->map[y][x];
 		}
