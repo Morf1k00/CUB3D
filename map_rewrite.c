@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:36 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/25 13:49:36 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:46:33 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,25 +45,31 @@ void map_rewrite(t_data *data)
 			return;
 		while (z < data->map_width - 1)
 		{
-			if (data->map[y][x] && data->map[y][x] != '\n' && data->map[y][x] != '\0')
+			if (data->map[y][x] || data->map[y][x] != '\n' || data->map[y][x] != '\0')
 			{
-				if (data->map[y][x] == ' ')
-				{
-					line[z] = '0';
-					x++;
-					z++;
-				}
-				else if (data->map[y][x] == '\t')
+				if (data->map[y][x] == '\t')
 				{
 					for (int i = 0; i < 4; i++)
 					{	line[z] = '0';
-						z++;}
-					x++; 
+						z++;
+						
+					}
+						printf("tab\n");
+					 
+				}
+				else if (data->map[y][x] == ' ')
+				{
+					line[z] = '0';
+					
+					z++;
 				}
 				else
-				{	line[z] = data->map[y][x];
-					z++;x++;
+				{	
+					line[z] = data->map[y][x];
+					z++;
+					
 				}
+				x++;
 			}
 			else
 				line[z++] = '0';
