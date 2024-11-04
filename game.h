@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/04 12:54:23 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:05:22 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,18 @@
 # include <fcntl.h>
 # include <stdbool.h>
 
-# define WIDTH 1260
-# define HEIGHT 800
+//normal working modes:
+// # define WIDTH 1260
+// # define HEIGHT 800
+# define WIDTH 1920 	
+# define HEIGHT 1080
+// slow working modes:
+// # define WIDTH 2560
+// # define HEIGHT 1440
+// # define WIDTH 3200
+// # define HEIGHT 1800
+// # define WIDTH 3840 	
+// # define HEIGHT 2160
 # define FOV 60
 # define TILE_SIZE 64
 # define PLAYER_RADIUS 5
