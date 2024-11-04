@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/04 15:08:37 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/04 15:57:27 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 //normal working modes:
 // # define WIDTH 1260
 // # define HEIGHT 800
-# define WIDTH 1920 	
+# define WIDTH 1920
 # define HEIGHT 1080
 // slow working modes:
 // # define WIDTH 2560
@@ -37,13 +37,16 @@
 // # define HEIGHT 1800
 // # define WIDTH 3840 
 // # define HEIGHT 2160
-# define FOV 60
+// # define FOV 60
+# define FOV 66
 # define TILE_SIZE 64
 # define PLAYER_RADIUS 5
 # define M_PI 3.14159265358979323846
 # define MAX_DISTANCE 100
-# define MOVE_SPEED 0.1
-# define ROTATION_SPEED 10
+// # define MOVE_SPEED 0.1
+// # define ROTATION_SPEED 10
+# define MOVE_SPEED 0.05
+# define ROTATION_SPEED 2.5
 
 typedef struct s_texture
 {
@@ -116,7 +119,8 @@ typedef struct s_data
 
 /*
  	Refacturing. Structure 2 make less then 5 parameters 4 recursive funtion 
-	int f_fill(t_map_data *map_data, int p_y, int p_x) - roi 1101
+	int f_fill(t_map_data *map_data, int p_y, int p_x) in map_chekcer.c 
+	- roi 1101
 */
 typedef struct s_map_data
 {
