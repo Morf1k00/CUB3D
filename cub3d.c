@@ -6,11 +6,12 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 10:49:02 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/04 12:51:16 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
+
 
 void	load_textures(t_data *data)
 {

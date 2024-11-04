@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/03 17:30:24 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/04 12:54:23 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,14 @@
 
 typedef struct s_texture
 {
-	void	*img;
-	char	*data;
-	int		bpp;
-	int		size_line;
-	int		endian;
-	int		width;
-	int		height;
-	char	*path;
+	void	*img;		// Pointer to the image object
+	char	*data;		// Pointer to the image data
+	int		bpp;		// Bits per pixel
+	int		size_line;	// Size of a line of the image in bytes
+	int		endian;		// Endianness of the image data
+	int		width;		// Width of the image in pixels
+	int		height;		// Height of the image in pixels
+	char	*path;		// Path to the image file
 }			t_texture;
 
 typedef struct s_render
