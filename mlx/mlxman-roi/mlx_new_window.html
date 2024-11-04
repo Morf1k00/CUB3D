@@ -1,0 +1,107 @@
+<!-- Creator     : groff version 1.19.2 -->
+<!-- CreationDate: Fri Dec 15 10:48:39 2023 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p     { margin-top: 0; margin-bottom: 0; }
+       pre   { margin-top: 0; margin-bottom: 0; }
+       table { margin-top: 0; margin-bottom: 0; }
+</style>
+<title>MiniLibX</title>
+
+</head>
+<body>
+
+<h1 align=center>MiniLibX</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSYS">SYNOPSYS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#RETURN VALUES">RETURN VALUES</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+
+<hr>
+
+
+<a name="NAME"></a>
+<h2>NAME</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">MiniLibX -
+Managing windows</p>
+
+<a name="SYNOPSYS"></a>
+<h2>SYNOPSYS</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><i>void *</i>
+<b><br>
+mlx_new_window</b> ( <i>void *mlx_ptr, int size_x, int
+size_y, char *title</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>int</i>
+<b><br>
+mlx_clear_window</b> ( <i>void *mlx_ptr, void *win_ptr</i>
+);</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>int</i>
+<b><br>
+mlx_destroy_window</b> ( <i>void *mlx_ptr, void *win_ptr</i>
+);</p>
+
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The
+<b>mlx_new_window</b> () function creates a new window on
+the screen, using the <i>size_x</i> and <i>size_y</i>
+parameters to determine its size, and <i>title</i> as the
+text that should be displayed in the window&rsquo;s title
+bar. The <i>mlx_ptr</i> parameter is the connection
+identifier returned by <b>mlx_init</b> () (see the
+<b>mlx</b> man page). <b>mlx_new_window</b> () returns a
+<i>void *</i> window identifier that can be used by other
+MiniLibX calls. Note that the MiniLibX can handle an
+arbitrary number of separate windows.</p>
+
+
+<p style="margin-left:11%; margin-top: 1em"><b>mlx_clear_window</b>
+() and <b>mlx_destroy_window</b> () respectively clear (in
+black) and destroy the given window. They both have the same
+parameters: <i>mlx_ptr</i> is the screen connection
+identifier, and <i>win_ptr</i> is a window identifier.</p>
+
+<a name="RETURN VALUES"></a>
+<h2>RETURN VALUES</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">If
+<b>mlx_new_window()</b> fails to create a new window (for
+wathever reason), it will return NULL, otherwise a non-null
+pointer is returned as a window identifier.
+<b>mlx_clear_window</b> and <b>mlx_destroy_window</b> right
+now return nothing.</p>
+
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">mlx(3),
+mlx_pixel_put(3), mlx_new_image(3), mlx_loop(3)</p>
+
+<a name="AUTHOR"></a>
+<h2>AUTHOR</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright ol@ -
+2002-2015 - Olivier Crouzet</p>
+<hr>
+</body>
+</html>

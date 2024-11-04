@@ -1,0 +1,173 @@
+<!-- Creator     : groff version 1.19.2 -->
+<!-- CreationDate: Fri Dec 15 10:48:39 2023 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta name="generator" content="groff -Thtml, see www.gnu.org">
+<meta http-equiv="Content-Type" content="text/html; charset=US-ASCII">
+<meta name="Content-Style" content="text/css">
+<style type="text/css">
+       p     { margin-top: 0; margin-bottom: 0; }
+       pre   { margin-top: 0; margin-bottom: 0; }
+       table { margin-top: 0; margin-bottom: 0; }
+</style>
+<title>MiniLibX</title>
+
+</head>
+<body>
+
+<h1 align=center>MiniLibX</h1>
+
+<a href="#NAME">NAME</a><br>
+<a href="#SYNOPSYS">SYNOPSYS</a><br>
+<a href="#EVENTS">EVENTS</a><br>
+<a href="#DESCRIPTION">DESCRIPTION</a><br>
+<a href="#GOING FURTHER WITH EVENTS">GOING FURTHER WITH EVENTS</a><br>
+<a href="#SEE ALSO">SEE ALSO</a><br>
+<a href="#AUTHOR">AUTHOR</a><br>
+
+<hr>
+
+
+<a name="NAME"></a>
+<h2>NAME</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">MiniLibX -
+Handle events</p>
+
+<a name="SYNOPSYS"></a>
+<h2>SYNOPSYS</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em"><i>int</i>
+<b><br>
+mlx_loop</b> ( <i>void *mlx_ptr</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>int</i>
+<b><br>
+mlx_key_hook</b> ( <i>void *win_ptr, int (*funct_ptr)(),
+void *param</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>int</i>
+<b><br>
+mlx_mouse_hook</b> ( <i>void *win_ptr, int (*funct_ptr)(),
+void *param</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>int</i>
+<b><br>
+mlx_expose_hook</b> ( <i>void *win_ptr, int (*funct_ptr)(),
+void *param</i> );</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>int</i>
+<b><br>
+mlx_loop_hook</b> ( <i>void *mlx_ptr, int (*funct_ptr)(),
+void *param</i> );</p>
+
+<a name="EVENTS"></a>
+<h2>EVENTS</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Both X-Window
+and MacOSX graphical systems are bi-directionnal. On one
+hand, the program sends orders to the screen to display
+pixels, images, and so on. On the other hand, it can get
+information from the keyboard and mouse associated to the
+screen. To do so, the program receives &quot;events&quot;
+from the keyboard or the mouse.</p>
+
+<a name="DESCRIPTION"></a>
+<h2>DESCRIPTION</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">To receive
+events, you must use <b>mlx_loop</b> (). This function never
+returns. It is an infinite loop that waits for an event, and
+then calls a user-defined function associated with this
+event. A single parameter is needed, the connection
+identifier <i>mlx_ptr</i> (see the <b>mlx manual).</b></p>
+
+<p style="margin-left:11%; margin-top: 1em">You can assign
+different functions to the three following events: <br>
+- A key is pressed <br>
+- The mouse button is pressed <br>
+- A part of the window should be re-drawn (this is called an
+&quot;expose&quot; event, and it is your program&rsquo;s job
+to handle it).</p>
+
+<p style="margin-left:11%; margin-top: 1em">Each window can
+define a different function for the same event.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The three
+functions <b>mlx_key_hook</b> (), <b>mlx_mouse_hook</b> ()
+and <b>mlx_expose_hook</b> () work exactly the same way.
+<i>funct_ptr</i> is a pointer to the function you want to be
+called when an event occurs. This assignment is specific to
+the window defined by the <i>win_ptr</i> identifier. The
+<i>param</i> adress will be passed to the function everytime
+it is called, and should be used to store the parameters it
+might need.</p>
+
+<p style="margin-left:11%; margin-top: 1em">The syntax for
+the <b>mlx_loop_hook</b> () function is identical to the
+previous ones, but the given function will be called when no
+event occurs.</p>
+
+<p style="margin-left:11%; margin-top: 1em">When it catches
+an event, the MiniLibX calls the corresponding function with
+fixed parameters:</p>
+
+
+<p style="margin-left:11%; margin-top: 1em">expose_hook(void
+*param); <br>
+key_hook(int keycode,void *param); <br>
+mouse_hook(int button,int x,int y,void *param); <br>
+loop_hook(void *param);</p>
+
+<p style="margin-left:11%; margin-top: 1em">These function
+names are arbitrary. They here are used to distinguish
+parameters according to the event. These functions are NOT
+part of the MiniLibX.</p>
+
+<p style="margin-left:11%; margin-top: 1em"><i>param</i> is
+the address specified in the mlx_*_hook calls. This address
+is never used nor modified by the MiniLibX. On key and mouse
+events, additional information is passed: <i>keycode</i>
+tells you which key is pressed (X11 : look for the include
+file &quot;keysymdef.h&quot;, MacOS : create a small
+software and find out by yourself), ( <i>x</i> , <i>y</i> )
+are the coordinates of the mouse click in the window, and
+<i>button</i> tells you which mouse button was pressed.</p>
+
+<a name="GOING FURTHER WITH EVENTS"></a>
+<h2>GOING FURTHER WITH EVENTS</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">The MiniLibX
+provides a much generic access to all type of events. The
+<i>mlx.h</i> include define <b>mlx_hook()</b> in the same
+manner mlx_*_hook functions work. The event and mask values
+will be taken from the X11 include file &quot;X.h&quot;
+(even for MacOSX, for compatibility purposes)</p>
+
+<p style="margin-left:11%; margin-top: 1em">See source code
+of mlx_int_param_event.c to find out how the MiniLibX will
+call your own function for a specific event.</p>
+
+<a name="SEE ALSO"></a>
+<h2>SEE ALSO</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">mlx(3),
+mlx_new_window(3), mlx_pixel_put(3), mlx_new_image(3)</p>
+
+<a name="AUTHOR"></a>
+<h2>AUTHOR</h2>
+
+
+<p style="margin-left:11%; margin-top: 1em">Copyright ol@ -
+2002-2015 - Olivier Crouzet</p>
+<hr>
+</body>
+</html>
