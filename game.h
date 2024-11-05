@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   game.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/04 15:57:27 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/05 15:41:39 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@
 // # define WIDTH 3840 
 // # define HEIGHT 2160
 // # define FOV 60
-# define FOV 66
+# define FOV 60
 # define TILE_SIZE 64
 # define PLAYER_RADIUS 5
 # define M_PI 3.14159265358979323846
 # define MAX_DISTANCE 100
 // # define MOVE_SPEED 0.1
 // # define ROTATION_SPEED 10
-# define MOVE_SPEED 0.05
+# define MOVE_SPEED 0.1
 # define ROTATION_SPEED 2.5
 
 typedef struct s_texture
@@ -138,25 +138,13 @@ int		move_w(t_data *data);
 int		move_s(t_data *data);
 char	*get_next_line(int fd);
 void	open_file(char *map_path, t_data *dat);
-void	maps_checker(t_data *dat);
 void	player_position(t_data *dat);
-
-// int		ft_strlen(const char *s);
-// char	*ft_strdup(const char *src);
-// char	*ft_substr(char const *s, unsigned int start, size_t len);
-// char	ft_strlcpy(char *dst, const char *src, size_t dstsize);
-// char	*ft_strchr(const char *s, int c);
-// char	*ft_strjoin(char const *s1, char const *s2);
 void	finder_coordinate(t_data *data, char *file_name);
-// int		ft_atoi(const char *str);
-// char	**ft_split(char const *s, char c);
 void	load_textures(t_data *data);
 void	ft_raycast(t_data *data);
-void	check_map(t_data *data);
 int		ft_isspace(char c);
 void	map_rewrite(t_data *data);
 int		count_tabs(char *line);
-bool	isMapClosed(t_data *data, int playerX, int playerY);
 void	check_walls(t_data *data);
 
 /* render2.c  refactoring render.c - 1030 roi*/

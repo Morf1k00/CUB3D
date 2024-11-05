@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:42:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/29 17:39:28 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/05 15:18:32 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	handle_key_press(int keycode, t_data *data)
 		rotate_right(data);
 	if (keycode == 119)
 		move_w(data);
-	else if (keycode == 115)
-		move_s(data);
-	else if (keycode == 97)
+	if (keycode == 97)
 		move_a(data);
-	else if (keycode == 100)
+	if (keycode == 100)
 		move_d(data);
+	if (keycode == 115)
+		move_s(data);
 	else
 		return (0);
 }
