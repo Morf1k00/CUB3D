@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/04 15:57:27 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/06 12:02:26 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ typedef struct s_data
 	int			color_f;	//color of floor
 	int			color_c;	//color of ceiling
 	t_render	render;		// Structure holding rendering-related data	
+    float		plane_x;	// Camera plane x-component - fight against fisheye
+    float		plane_y;	// Camera plane y-component - fight against fisheye
 }				t_data;
 
 /*

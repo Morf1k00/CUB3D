@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:10:39 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 16:45:02 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/06 12:11:49 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	step_determination(t_data *data)
 
 /* 
 Calculates the direction of the ray for the current vertical stripe. 1030 - roi
- */
+ fish eye */
 // Рассчет угла луча
-void	raydir_calculation(t_data *data, int x)
+/* void	raydir_calculation(t_data *data, int x)
 {
 	data->render.ray_angle = data->player_angle
 		- (FOV / 2.0) + (x * (FOV / (float)WIDTH));
@@ -61,6 +61,20 @@ void	raydir_calculation(t_data *data, int x)
 	data->render.map_x = (int)data->player_x;
 	data->render.map_y = (int)data->player_y;
 	data->render.hit = 0;
+} */
+
+// attempt to fix fish eye, data->plane_x and data->plane_y are added and 
+// calculated in ft_raycast
+void raydir_calculation(t_data *data, int x)
+{
+    double camera_x = 2 * x / (double)WIDTH - 1; // x-coordinate in camera space
+    data->render.ray_dir_x = cos(data->player_angle) + data->plane_x * camera_x;
+    data->render.ray_dir_y = sin(data->player_angle) + data->plane_y * camera_x;
+    data->render.delta_dist_x = fabs(1 / data->render.ray_dir_x);
+    data->render.delta_dist_y = fabs(1 / data->render.ray_dir_y);
+    data->render.map_x = (int)data->player_x;
+    data->render.map_y = (int)data->player_y;
+    data->render.hit = 0;
 }
 
 /* 
@@ -94,7 +108,7 @@ void	wallhit_detection(t_data *data)
 
 /* 
 	Calculates the distance to the wall and the height of the wall slice 
-	to be drawn. - roi 1030
+	to be drawn. - roi 1030 fish eye
  */
 void	draw_calculation(t_data *data)
 {
@@ -127,6 +141,10 @@ void	ft_raycast(t_data *data)
 	int	x;
 	int	y;
 
+	// Initialize the camera plane (perpendicular to the direction vector)
+    data->plane_x = -sin(data->player_angle) * tan(FOV / 2.0 * M_PI / 180.0);
+    data->plane_y = cos(data->player_angle) * tan(FOV / 2.0 * M_PI / 180.0);
+	
 	x = 0;
 	clear_screen(data);
 	while (x < WIDTH)
