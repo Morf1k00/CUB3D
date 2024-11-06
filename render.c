@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:10:39 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/06 12:11:49 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/06 13:18:03 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,9 +141,12 @@ void	ft_raycast(t_data *data)
 	int	x;
 	int	y;
 
-	// Initialize the camera plane (perpendicular to the direction vector)
+	/* // Initialize the camera plane (perpendicular to the direction vector) 1105 - roi
     data->plane_x = -sin(data->player_angle) * tan(FOV / 2.0 * M_PI / 180.0);
-    data->plane_y = cos(data->player_angle) * tan(FOV / 2.0 * M_PI / 180.0);
+    data->plane_y = cos(data->player_angle) * tan(FOV / 2.0 * M_PI / 180.0); */
+	// attempt to fix reverse of movement keys after rotation
+	data->plane_x = cos(data->player_angle + M_PI / 2) * tan(FOV / 2.0 * M_PI / 180.0);
+    data->plane_y = sin(data->player_angle + M_PI / 2) * tan(FOV / 2.0 * M_PI / 180.0);
 	
 	x = 0;
 	clear_screen(data);

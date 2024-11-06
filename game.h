@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/06 12:02:26 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/06 12:48:32 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@
 // # define MOVE_SPEED 0.1
 // # define ROTATION_SPEED 10
 # define MOVE_SPEED 0.05
-# define ROTATION_SPEED 2.5
+# define ROTATION_SPEED 0.1
 
 typedef struct s_texture
 {
