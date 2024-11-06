@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:36 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/04 18:21:40 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/06 13:31:53 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,10 +110,7 @@ void	replace_characters(t_data *data, char *line, int y, int *z)
 			if (data->map[y][x] == ' ')
 				line[(*z)++] = '0';
 			else if (data->map[y][x] == '\t')
-			{
-				i = check_previous(data, x, y);
-				append_zeros(line, z, i);
-			}
+				exit(1);
 			else
 				line[(*z)++] = data->map[y][x];
 		}
