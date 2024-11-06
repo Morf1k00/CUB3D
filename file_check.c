@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   file_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:22:42 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/31 19:34:58 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/06 16:06:48 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,10 @@ void	check_floor_ceiling_color(t_data *data, char *line)
 		data->color_f = color;
 	else if (line[0] == 'C')
 		data->color_c = color;
+	free(rgb[0]);
+	free(rgb[1]);
+	free(rgb[2]);
+	free(rgb);
 }
 
 void	finder_coordinate(t_data *data, char *file_name)
@@ -84,10 +88,7 @@ void	finder_coordinate(t_data *data, char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-	{
-		printf("Error\nCan't open file\n");
-		return ;
-	}
+		prog_exit(WRONG_FILE, data, 1);
 	line = get_next_line(fd);
 	while (line)
 	{
@@ -99,5 +100,6 @@ void	finder_coordinate(t_data *data, char *file_name)
 		free(line);
 		line = get_next_line(fd);
 	}
+	free(line);
 	close(fd);
 }

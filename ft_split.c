@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:58:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/18 14:33:28 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/06 15:58:04 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ char	**ft_split(char const *s, char c)
 	fin = ft_mal_and_wr(fin, temp, c);
 	if (!fin)
 	{
-		free (temp);
+		free(temp);
 		return (NULL);
 	}
 	free (temp);

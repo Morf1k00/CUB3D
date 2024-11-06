@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/05 15:41:39 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:21:28 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 # include <string.h>
 # include <fcntl.h>
 # include <stdbool.h>
+# include "errors.h"
+# include <errno.h>
+# include <stddef.h>
 
 //normal working modes:
 // # define WIDTH 1260
@@ -47,6 +50,7 @@
 // # define ROTATION_SPEED 10
 # define MOVE_SPEED 0.1
 # define ROTATION_SPEED 2.5
+# define COLLISION_BUFF 0.1
 
 typedef struct s_texture
 {
@@ -152,5 +156,7 @@ void	draw_walls(t_data *data, int x, int y);
 void	texture_assign(t_data *data);
 /*  count_tabs.c	called from map_rewrite.c -	refactured by roi 1103 */
 int		count_tabs(char *line);
+void 	prog_exit(char *message, t_data *data, int error_code);
+void 	clean_memory(t_data *data);
 
 #endif

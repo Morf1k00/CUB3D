@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:10:39 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/30 16:45:02 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/06 15:31:38 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,9 @@ Raycasting is a technique used to calculate the distance from the player
 to the walls in the game world and to determine what should be drawn on 
 the screen. - roi 1030 
 */
+
+
+
 void	ft_raycast(t_data *data)
 {
 	int	x;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/31 17:47:18 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/06 16:14:48 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,5 +214,5 @@ void	player_position(t_data *dat)
 		}
 	}
 	if (i == dat->map_height)
-		printf("Error\nNo player position\n");
+		prog_exit(PLAYER_EXIST, dat, 1);
 }

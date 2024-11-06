@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/04 18:20:02 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/06 16:19:20 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,31 +95,28 @@ void	init_data(t_data *data)
 		fprintf(stderr, "Failed to get image data address\n");
 }
 
+
 int	main(int arc, char **arv)
 {
 	t_data	data;
-	int		i;
 
-	i = -1;
+	ft_memset(&data, 0, sizeof(t_data));
+	ft_memset(&data.render, 0, sizeof(t_render));
+	ft_memset(&data.wall_texture, 0, sizeof(t_texture) * 4);
 	init_data(&data);
 	open_file(arv[1], &data);
-	printf("%i\n", data.map_width);
 	map_rewrite(&data);
-	while (++i < data.map_height)
-		printf("%s", data.map[i]);
 	finder_coordinate(&data, arv[1]);
 	player_position(&data);
 	check_walls(&data);
 	load_textures(&data);
-	printf("Player x: %i\n", (int)data.player_x);
-	printf("Player y: %f\n", data.player_y);
 	mlx_hook(data.win, 2, 1L << 0, handle_key_press, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_image(data.mlx, data.img);
 	mlx_destroy_window(data.mlx, data.win);
 	mlx_destroy_display(data.mlx);
-	free(data.mlx);
+	clean_memory(&data);
 	return (0);
 }
 // maps_checker(&data);
