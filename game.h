@@ -6,7 +6,7 @@
 /*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/06 12:48:32 by oruban           ###   ########.fr       */
+/*   Updated: 2024/11/06 15:26:39 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,5 +166,7 @@ void	draw_walls(t_data *data, int x, int y);
 void	texture_assign(t_data *data);
 /*  count_tabs.c	called from map_rewrite.c -	refactured by roi 1103 */
 int		count_tabs(char *line);
+// movement.c - delean with diagonal movemtn W,S keys - 1106 roi
+void update_direction_vectors(t_data *data);
 
 #endif
