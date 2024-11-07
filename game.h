@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/06 16:21:28 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:49:15 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,8 @@ void	draw_walls(t_data *data, int x, int y);
 void	texture_assign(t_data *data);
 /*  count_tabs.c	called from map_rewrite.c -	refactured by roi 1103 */
 int		count_tabs(char *line);
-void 	prog_exit(char *message, t_data *data, int error_code);
-void 	clean_memory(t_data *data);
+void	prog_exit(char *message, t_data *data, int error_code);
+void	clean_memory(t_data *data);
+int		close_window(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:22:42 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/06 16:06:48 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:44:44 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	finder_coordinate(t_data *data, char *file_name)
 
 	fd = open(file_name, O_RDONLY);
 	if (fd < 0)
-		prog_exit(WRONG_FILE, data, 1);
+		prog_exit(FILE_OPEN, data, 1);
 	line = get_next_line(fd);
 	while (line)
 	{

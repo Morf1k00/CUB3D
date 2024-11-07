@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/06 16:19:20 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:44:01 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@ void	load_textures(t_data *data)
 		data->wall_texture[i].img = mlx_xpm_file_to_image(data->mlx,
 				data->wall_texture[i].path, &width, &height);
 		if (!data->wall_texture[i].img)
-		{
-			printf("Error loading texture file: %s\n",
-				data->wall_texture[i].path);
-			exit(EXIT_FAILURE);
-		}
+			prog_exit(ERROR_TEX, data, 1);
 		data->wall_texture[i].width = width;
 		data->wall_texture[i].height = height;
 		data->wall_texture[i].data = mlx_get_data_addr(
@@ -39,9 +35,6 @@ void	load_textures(t_data *data)
 	}
 }
 
-/* 
-	 Clears the screen by filling it with the ceiling and floor colors.-1030 roi
- */
 void	clear_screen(t_data *data)
 {
 	int	x;
@@ -82,19 +75,18 @@ void	init_data(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (!data->mlx)
-		fprintf(stderr, "Failed to initialize MLX\n");
+		prog_exit(ERORR_MLX, data, 1);
 	data->win = mlx_new_window(data->mlx, WIDTH, HEIGHT, "Cub3D");
 	if (!data->win)
-		fprintf(stderr, "Failed to create window\n");
+		prog_exit(ERORR_MLX_WIN, data, 1);
 	data->img = mlx_new_image(data->mlx, WIDTH, HEIGHT);
 	if (!data->img)
-		fprintf(stderr, "Failed to create image\n");
+		prog_exit(ERORR_MLX_IMG, data, 1);
 	data->data = mlx_get_data_addr(data->img, &data->bpp,
 			&data->size_line, &data->endian);
 	if (!data->data)
-		fprintf(stderr, "Failed to get image data address\n");
+		prog_exit(ERORR_MLX_DATA, data, 1);
 }
-
 
 int	main(int arc, char **arv)
 {
@@ -111,6 +103,7 @@ int	main(int arc, char **arv)
 	check_walls(&data);
 	load_textures(&data);
 	mlx_hook(data.win, 2, 1L << 0, handle_key_press, &data);
+	mlx_hook(data.win, 17, 0, close_window, &data);
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_image(data.mlx, data.img);
@@ -119,4 +112,3 @@ int	main(int arc, char **arv)
 	clean_memory(&data);
 	return (0);
 }
-// maps_checker(&data);

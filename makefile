@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/11/06 16:19:51 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/11/07 14:54:52 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,8 +40,7 @@ MPATH_SRCS = 	cub3d.c			\
 				map_checker.c 	\
 				map_rewrite.c	\
 				count_tabs.c	\
-				errors_func.c	\
-				utils3.c
+				errors_func.c	
 # utils.c			\
 # utils2.c		\
 #  get_next_line.c	\

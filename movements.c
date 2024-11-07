@@ -6,19 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:14:08 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/06 15:14:35 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:38:17 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "game.h"
-
-// void	move_with_slide(t_data *data, float move_x, float move_y)
-// {
-// 	if (data->map[(int)data->player_y][(int)(data->player_x + move_x)] != '1')
-// 		data->player_x += move_x;
-// 	if (data->map[(int)(data->player_y + move_y)][(int)data->player_x] != '1')
-// 		data->player_y += move_y;
-// }
 
 int	move_a(t_data *data)
 {

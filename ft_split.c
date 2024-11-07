@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:58:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/06 15:58:04 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 14:21:50 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	ft_free_all(char **fin)
 		i++;
 	}
 	free(fin);
+	return (NULL);
 }
 
 static char	*ft_dele(const char *s, char c)
@@ -65,10 +66,7 @@ static char	**ft_mal_and_wr(char **fin, char *temp, char c)
 			i++;
 		fin[j] = malloc(sizeof(char) * (i - g + 1));
 		if (!fin[j])
-		{
 			ft_free_all(fin);
-			return (NULL);
-		}
 		while (temp[g] != '\0' && temp[g] != c)
 			fin[j][k++] = temp[g++];
 		fin[j][k] = '\0';
