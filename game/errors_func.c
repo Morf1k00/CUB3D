@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:36:55 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 16:27:24 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 17:22:37 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	clean_memory(t_data *data)
 void	prog_exit(char *message, t_data *data, int error_code)
 {
 	if (error_code == 1)
-		fprintf(stderr, "%s\n", message);
+		fprintf(stderr, "\n\n\t\t\033[31m%s\033[0m\n", message);
 	clean_memory(data);
 	exit(error_code);
 }
