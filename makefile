@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/11/07 14:54:52 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/11/07 16:12:05 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ FLAGS = -Wall -Wextra -Werror -I$(MLX_DIR) -I$(HEADER_DIR)
 FLAGS += -I$(LIBFT_PATH)
 # FLAGS += -g -fsanitize=address // roi
 RM = rm -rf
+SILENT = @
 
 # Header files
 HEADER_SRCS = game.h
@@ -30,6 +31,7 @@ HEADER_SRCS = game.h
 HEADER =  $(HEADER_SRCS)
 
 # Source files
+MPATH_DIR = sourse/
 MPATH_SRCS = 	cub3d.c			\
 				movement.c		\
 				render.c		\
@@ -57,16 +59,16 @@ MLX_LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 # Rule to create .o files from .c files
 %.o: %.c $(HEADER) Makefile
-	@$(CC) $(FLAGS) -c $< -o $@
+		$(SILENT)$(CC) $(FLAGS) -c $< -o $@
 
 # Rule to link .o files into the final executable
 # $(NAME): $(OBJ_M)
 $(NAME): $(OBJ_M) $(LIB)	# 1031 roi
-	@$(CC) $(OBJ_M) $(MLX_LIBS) $(LIBFT_FLAGS) -o $(NAME)
+		@$(CC) $(OBJ_M) $(MLX_LIBS) $(LIBFT_FLAGS) -o $(NAME)
 # @$(CC) $(OBJ_M) $(MLX_LIBS) -o $(NAME)
 
 $(LIB):								# 1031 roi
-	make -C $(LIBFT_PATH) all bonus
+	@ make -C $(LIBFT_PATH) --silent all bonus
 	
 
 # Default rule to build the project
@@ -74,14 +76,14 @@ all: $(NAME)
 
 # Rule to remove object files
 clean:	
-	@ $(RM) $(OBJ_M)
-	@ make -C $(LIBFT_PATH) clean
+	$(SILENT) $(RM) $(OBJ_M)
+	$(SILENT) make -C $(LIBFT_PATH) --silent clean
 #	make -C $(LIB_PATH) all bonus clean
 
 # Rule to remove object files and executable
 fclean: clean
-	@$(RM) $(NAME)
-	@make -C $(LIBFT_PATH) $@
+	$(SILENT) $(RM) $(NAME)
+	$(SILENT) make -C $(LIBFT_PATH) --silent $@
 
 # Rule to recompile the project
 re: fclean all

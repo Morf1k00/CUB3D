@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 14:44:01 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:47:13 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	game_loop(t_data *data)
 
 void	init_data(t_data *data)
 {
+	ft_memset(data, 0, sizeof(t_data));
+	ft_memset(data->wall_texture, 0, sizeof(t_texture) * 4);
 	data->mlx = mlx_init();
 	if (!data->mlx)
 		prog_exit(ERORR_MLX, data, 1);
@@ -92,9 +94,10 @@ int	main(int arc, char **arv)
 {
 	t_data	data;
 
-	ft_memset(&data, 0, sizeof(t_data));
+	if (arc != 2)
+		simple_exit(WRONG_ARG);
+	check_file(arv[1]);
 	ft_memset(&data.render, 0, sizeof(t_render));
-	ft_memset(&data.wall_texture, 0, sizeof(t_texture) * 4);
 	init_data(&data);
 	open_file(arv[1], &data);
 	map_rewrite(&data);

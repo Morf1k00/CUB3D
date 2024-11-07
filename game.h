@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 14:49:15 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:46:52 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,18 +121,6 @@ typedef struct s_data
 	t_render	render;		// Structure holding rendering-related data	
 }				t_data;
 
-/*
- 	Refacturing. Structure 2 make less then 5 parameters 4 recursive funtion 
-	int f_fill(t_map_data *map_data, int p_y, int p_x) in map_chekcer.c 
-	- roi 1101
-*/
-typedef struct s_map_data
-{
-	int		height;
-	int		width;
-	char	**map;
-}				t_map_data;
-
 void	clear_screen(t_data *data);
 int		handle_key_press(int keycode, t_data *data);
 int		game_loop(t_data *data);
@@ -159,5 +147,9 @@ int		count_tabs(char *line);
 void	prog_exit(char *message, t_data *data, int error_code);
 void	clean_memory(t_data *data);
 int		close_window(t_data *data);
+void	check_pos(t_data *data, int i, int j);
+void	change_pos(t_data *data, int i, int j);
+void	simple_exit(char *message);
+void	check_file(char *path);
 
 #endif

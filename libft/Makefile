@@ -63,15 +63,15 @@ CC			:=	gcc
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	ar rcs $(NAME) $(OBJS)
+	@ ar rcs $(NAME) $(OBJS)
 
 # %.o: %.c
 # .c.o:
 # 	$(CC) $(FLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS)
-	rm -f $(OBJS_BONUS)
+	@rm -f $(OBJS)
+	@rm -f $(OBJS_BONUS)
 
 fclean: clean
 	rm -f $(NAME)

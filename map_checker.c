@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:00:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 14:47:04 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:46:34 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ void	check_walls(t_data *data)
 	char		**map;
 	int			y;
 	int			x;
-	t_map_data	map_data;
 
 	y = (int)data->player_y;
 	x = (int)data->player_x;

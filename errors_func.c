@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:36:55 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 15:01:18 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:51:31 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,10 @@ void	prog_exit(char *message, t_data *data, int error_code)
 		fprintf(stderr, "%s\n", message);
 	clean_memory(data);
 	exit(error_code);
+}
+
+void	simple_exit(char *message)
+{
+	fprintf(stderr, "%s\n", message);
+	exit(1);
 }

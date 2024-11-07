@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:36 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 14:51:03 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:51:17 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	process_line(t_data *data, int y)
 	char	*line;
 
 	z = 0;
-	// tabs = count_tabs(data->map[y]);
 	handle_memory_allocation(&line, data->map_width);
 	replace_characters(data, line, y, &z);
 	line[z++] = '\n';

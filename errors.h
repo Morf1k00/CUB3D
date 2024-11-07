@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:47:27 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 14:46:40 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:45:33 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define ERRORS_H
 
 # define WRONG_MAP "Error\nWrong map format\n"
+# define WRONG_PATH "Error\nWrong path to the map\n"
+# define WRONG_ARG "Error\nWrong number of arguments\n"
 # define WRONG_FILE "Error\nWrong file format\n"
 # define WRONG_ARG "Error\nWrong number of arguments\n"
 # define MEMORY_ALLOC "Error\nMemory allocation error\n"

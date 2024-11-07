@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:42:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/06 16:05:54 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:54:03 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	close_window(t_data *data)
 {
 	mlx_destroy_window(data->mlx, data->win);
+	printf("\n\t\033[0;31m\033[1m   GAME CLOSE\n\n");
 	exit(0);
 }
 

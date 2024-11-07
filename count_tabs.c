@@ -6,10 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 17:30:00 by oruban            #+#    #+#             */
-/*   Updated: 2024/11/07 14:53:22 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 15:52:19 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "game.h"
 /* 
 	refacturing after shortening map_rewrite() it was devieded into 5
 	functionsthere fore count_tabs() had to be removed file 
@@ -28,4 +29,49 @@ int	count_tabs(char *line)
 		line++;
 	}
 	return (count);
+}
+
+void	check_pos(t_data *data, int i, int j)
+{
+	if (data->map[i][j] == 'S')
+		data->player_angle = 0;
+	if (data->map[i][j] == 'W')
+		data->player_angle = 90;
+	if (data->map[i][j] == 'E')
+		data->player_angle = 180;
+	if (data->map[i][j] == 'N')
+		data->player_angle = 270;
+}
+
+void	change_pos(t_data *data, int i, int j)
+{
+	if (data->map[i][j - 1] == '1')
+		data->player_x = (float)j + 0.5;
+	else
+		data->player_x = (float)j;
+	if (data->map[i - 1][j] == '1')
+		data->player_y = (float)i + 0.5;
+	else
+		data->player_y = (float)i;
+}
+
+void	check_file(char *path)
+{
+	char	*way;
+	int		i;
+	int		l;
+
+	way = ".cub";
+	i = 4;
+	l = ft_strlen(path);
+	while (i > 0)
+	{
+		if (path[l] == way[i])
+		{
+			l--;
+			i--;
+		}
+		else
+			simple_exit(WRONG_PATH);
+	}
 }
