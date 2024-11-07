@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/11/07 16:16:40 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/11/07 16:51:58 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ LIB 		= $(LIBFT_PATH)libft.a	# 1031 roi
 LIBFT_FLAGS	= -L$(LIBFT_PATH) -lft	# 1031 roi
 
 # Compiler and flags
-CC = gcc  #-g -fsanitize=address
+CC = @gcc  #-g -fsanitize=address
 FLAGS = -Wall -Wextra -Werror -I$(MLX_DIR) -I$(HEADER_DIR)
 FLAGS += -I$(LIBFT_PATH)
 # FLAGS += -g -fsanitize=address // roi
@@ -58,13 +58,14 @@ MLX_DIR = mlx
 MLX_LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 # Rule to create .o files from .c files
-%.o: %.c $(HEADER) Makefile
+$(MPATH_DIR)%.o: $(MPATH_DIR)%.c $(HEADER) Makefile
 		$(SILENT)$(CC) $(FLAGS) -c $< -o $@
 
 # Rule to link .o files into the final executable
 # $(NAME): $(OBJ_M)
 $(NAME): $(OBJ_M) $(LIB)	# 1031 roi
-		@$(CC) $(OBJ_M) $(MLX_LIBS) $(LIBFT_FLAGS) -o $(NAME)
+		$(SILENT)$(CC) $(OBJ_M) $(MLX_LIBS) $(LIBFT_FLAGS) -o $(NAME)
+		@echo "$(GREEN)$(BOLD)\n\n\t\t\t$(NAME) created!\n\n$(DEFAULT)"
 # @$(CC) $(OBJ_M) $(MLX_LIBS) -o $(NAME)
 
 $(LIB):								# 1031 roi
@@ -78,12 +79,14 @@ all: $(NAME)
 clean:	
 	$(SILENT) $(RM) $(OBJ_M)
 	$(SILENT) make -C $(LIBFT_PATH) --silent clean
+	@echo "\t\t$(YELLOW)$(BOLD)  Object files deleted!$(DEFAULT)"
 #	make -C $(LIB_PATH) all bonus clean
 
 # Rule to remove object files and executable
 fclean: clean
 	$(SILENT) $(RM) $(NAME)
 	$(SILENT) make -C $(LIBFT_PATH) --silent $@
+	@echo "\t\t\t$(RED)$(BOLD)All deleted!$(DEFAULT)"
 
 # Rule to recompile the project
 re: fclean all
@@ -92,3 +95,9 @@ re: fclean all
 
 norm:
 	norminette $(MPATH_SRCS) $(HEADER_SRCS)
+
+RED = \033[31m
+GREEN = \033[32m
+DEFAULT = \033[0m
+BOLD = \033[1m
+YELLOW = \033[33m 

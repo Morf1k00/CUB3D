@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 16:17:08 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:54:44 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ int	main(int arc, char **arv)
 	load_textures(&data);
 	mlx_hook(data.win, 2, 1L << 0, handle_key_press, &data);
 	mlx_hook(data.win, 17, 0, close_window, &data);
+	printf("\n\t\033[0;32m\033[1m   GAME START\n\n");
 	mlx_loop_hook(data.mlx, game_loop, &data);
 	mlx_loop(data.mlx);
 	mlx_destroy_image(data.mlx, data.img);

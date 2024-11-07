@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:36:55 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 16:17:25 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:27:24 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	clean_memory(t_data *data)
 	i = 0;
 	while (i < 4)
 	{
-		free(data->wall_texture[i].data);
-		free(data->wall_texture[i].img);
+		if (data->wall_texture[i].img)
+			free(data->wall_texture[i].img);
 		i++;
 	}
 }
