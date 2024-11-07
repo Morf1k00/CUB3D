@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 17:30:55 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/18 14:06:53 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:18:07 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 int	ft_strlen(const char *s)
 {

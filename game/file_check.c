@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:22:42 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 14:44:44 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:17:31 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 int	ft_isspace(char c)
 {

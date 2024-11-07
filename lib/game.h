@@ -6,17 +6,17 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 15:46:52 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:18:34 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GAME_H
 # define GAME_H
 
-# include "libft/libft.h"
-# include "libft/ft_printf/ft_printf.h"
-# include "libft/gnl/get_next_line.h"
-# include "mlx/mlx.h"
+# include "../libft/libft.h"
+# include "../libft/ft_printf/ft_printf.h"
+# include "../libft/gnl/get_next_line.h"
+# include "../mlx/mlx.h"
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>

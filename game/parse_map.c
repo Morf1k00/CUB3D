@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/27 14:18:11 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 15:11:15 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:17:56 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 void	count_width(char *line, t_data *dat)
 {

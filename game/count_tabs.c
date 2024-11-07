@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 17:30:00 by oruban            #+#    #+#             */
-/*   Updated: 2024/11/07 15:52:19 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:17:12 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 /* 
 	refacturing after shortening map_rewrite() it was devieded into 5
 	functionsthere fore count_tabs() had to be removed file 

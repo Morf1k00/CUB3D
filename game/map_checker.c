@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:00:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 15:46:34 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:17:41 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 void	free_map(char **map_copy)
 {

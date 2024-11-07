@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:14:08 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 14:38:17 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:17:52 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 int	move_a(t_data *data)
 {

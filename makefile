@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/11/07 16:12:05 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/11/07 16:16:40 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,12 +26,12 @@ RM = rm -rf
 SILENT = @
 
 # Header files
-HEADER_SRCS = game.h
+HEADER_SRCS = lib/game.h
 # HEADER_DIR = libc/
 HEADER =  $(HEADER_SRCS)
 
 # Source files
-MPATH_DIR = sourse/
+MPATH_DIR = game/
 MPATH_SRCS = 	cub3d.c			\
 				movement.c		\
 				render.c		\
@@ -48,7 +48,7 @@ MPATH_SRCS = 	cub3d.c			\
 #  get_next_line.c	\
 # ft_split.c 		\
 MPATH_DIR 	= sourse/
-MPATH =  $(MPATH_SRCS)
+MPATH =  $(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M = $(MPATH:.c=.o)
 
 # MLX library path

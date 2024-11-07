@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 14:59:24 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/10 16:07:33 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:17:38 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 #define BUFFER_SIZE 1024
 

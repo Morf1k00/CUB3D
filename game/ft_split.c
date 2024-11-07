@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:58:06 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 14:21:50 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:17:34 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 static void	ft_free_all(char **fin)
 {

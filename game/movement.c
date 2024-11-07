@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:42:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 15:54:03 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:17:47 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 int	close_window(t_data *data)
 {

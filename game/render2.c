@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/30 16:41:47 by oruban            #+#    #+#             */
-/*   Updated: 2024/11/07 14:40:02 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:18:01 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 void	ray_hits_x_axis(t_data *data)
 {

@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/28 13:50:47 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/10/10 16:07:51 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/07 16:18:04 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "game.h"
+#include "../lib/game.h"
 
 void	ft_bzero(void *s, size_t n)
 {
