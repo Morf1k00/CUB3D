@@ -6,7 +6,7 @@
 #    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/11/07 16:51:58 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/11/08 15:52:35 by rkrechun         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ RM = rm -rf
 SILENT = @
 
 # Header files
-HEADER_SRCS = lib/game.h
+HEADER_SRCS = inc/game.h
 # HEADER_DIR = libc/
 HEADER =  $(HEADER_SRCS)
 

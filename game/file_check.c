@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/16 16:22:42 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 16:17:31 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:52:51 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/game.h"
+#include "../inc/game.h"
 
 int	ft_isspace(char c)
 {
@@ -72,9 +72,15 @@ void	check_floor_ceiling_color(t_data *data, char *line)
 	rgb = ft_split(line + i, ',');
 	color = ft_atoi(rgb[0]) << 16 | ft_atoi(rgb[1]) << 8 | ft_atoi(rgb[2]);
 	if (line[0] == 'F')
+	{
 		data->color_f = color;
+		data->found_floor = 1;
+	}
 	else if (line[0] == 'C')
+	{
 		data->color_c = color;
+		data->found_ceiling = 1;
+	}
 	free(rgb[0]);
 	free(rgb[1]);
 	free(rgb[2]);
@@ -102,4 +108,8 @@ void	finder_coordinate(t_data *data, char *file_name)
 	}
 	free(line);
 	close(fd);
+	if (!data->found_ceiling)
+		prog_exit(ERORR_CEILING, data, 1);
+	if (!data->found_floor)
+		prog_exit(ERORR_FLOOR, data, 1);
 }

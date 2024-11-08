@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:27:46 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 16:54:44 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:52:44 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/game.h"
+#include "../inc/game.h"
 
 void	load_textures(t_data *data)
 {

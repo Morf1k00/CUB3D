@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/17 14:10:39 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 16:17:58 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:53:13 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/game.h"
+#include "../inc/game.h"
 
 /* 
 	 Determines the step direction and initial side distance for 

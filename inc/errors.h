@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 13:47:27 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 17:15:11 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:49:49 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@
 # define ERORR_MLX_IMG "\tFailed to create image\n"
 # define ERORR_MLX_DATA "\tFailed to get image data\n"
 # define ERORR_CLOSE "\tMap is not closed\n"
+# define ERORR_FLOOR "\tCoordine floor not found\n"
+# define ERORR_CEILING "\tCoordinate ceiling not found\n"
 
 #endif

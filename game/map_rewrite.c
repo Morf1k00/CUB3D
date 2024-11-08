@@ -6,11 +6,11 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:36 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 16:17:44 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:53:00 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../lib/game.h"
+#include "../inc/game.h"
 
 void	handle_memory_allocation(char **line, int width_with_tabs)
 {

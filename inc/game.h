@@ -6,7 +6,7 @@
 /*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:57:44 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/07 16:18:34 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/08 15:45:53 by rkrechun         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,9 @@ typedef struct s_data
 	int			map_height;	// Height of the game map
 	t_texture	wall_texture[4]; // Array of textures for the walls (N, S, W, E)
 	int			color_f;	//color of floor
+	int			found_floor;
 	int			color_c;	//color of ceiling
+	int			found_ceiling;
 	t_render	render;		// Structure holding rendering-related data	
 }				t_data;
 
