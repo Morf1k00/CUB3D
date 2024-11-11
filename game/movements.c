@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 15:14:08 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/08 15:53:05 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:39:18 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	move_w(t_data *data)
 		data->player_y += move_y;
 	}
 	ft_raycast(data);
+	return (0);
 }
 
 int	move_s(t_data *data)
@@ -74,4 +75,5 @@ int	move_s(t_data *data)
 		data->player_y -= move_y;
 	}
 	ft_raycast(data);
+	return (0);
 }

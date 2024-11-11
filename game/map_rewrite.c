@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_rewrite.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 13:39:36 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/08 15:53:00 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:40:11 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	handle_memory_allocation(char **line, int width_with_tabs)
 void	replace_characters(t_data *data, char *line, int y, int *z)
 {
 	int	x;
-	int	i;
 
 	x = -1;
 	while (*z < data->map_width - 1)
@@ -45,7 +44,6 @@ void	replace_characters(t_data *data, char *line, int y, int *z)
 void	process_line(t_data *data, int y)
 {
 	int		z;
-	int		tabs;
 	char	*line;
 
 	z = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/08 13:42:34 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/08 15:53:02 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:38:35 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	rotate_left(t_data *data)
 	if (data->player_angle < 0)
 		data->player_angle += 360;
 	ft_raycast(data);
+	return (0);
 }
 
 int	rotate_right(t_data *data)
@@ -33,6 +34,7 @@ int	rotate_right(t_data *data)
 	if (data->player_angle >= 360)
 		data->player_angle -= 360;
 	ft_raycast(data);
+	return (0);
 }
 
 int	handle_key_press(int keycode, t_data *data)
@@ -53,4 +55,5 @@ int	handle_key_press(int keycode, t_data *data)
 		move_s(data);
 	else
 		return (0);
+	return (0);
 }

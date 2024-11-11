@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map_checker.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+        */
+/*   By: oruban <oruban@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 16:00:20 by rkrechun          #+#    #+#             */
-/*   Updated: 2024/11/08 15:52:55 by rkrechun         ###   ########.fr       */
+/*   Updated: 2024/11/11 12:39:43 by oruban           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ int	f_fill(t_data *data, int p_y, int p_x)
 
 void	check_walls(t_data *data)
 {
-	char		**map;
 	int			y;
 	int			x;
 

@@ -3,25 +3,25 @@
 #                                                         :::      ::::::::    #
 #    makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rkrechun <rkrechun@student.42.fr>          +#+  +:+       +#+         #
+#    By: oruban <oruban@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/11 14:14:12 by rkrechun          #+#    #+#              #
-#    Updated: 2024/11/08 15:52:35 by rkrechun         ###   ########.fr        #
+#    Updated: 2024/11/11 13:16:09 by oruban           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # Project name
 NAME = cub3d
 
-LIBFT_PATH 	= libft/ 				# 1031 roi
-LIB 		= $(LIBFT_PATH)libft.a	# 1031 roi
-LIBFT_FLAGS	= -L$(LIBFT_PATH) -lft	# 1031 roi
+LIBFT_PATH 	= libft/
+LIB 		= $(LIBFT_PATH)libft.a
+LIBFT_FLAGS	= -L$(LIBFT_PATH) -lft
 
 # Compiler and flags
-CC = @gcc  #-g -fsanitize=address
+CC = gcc  #-g -fsanitize=address
 FLAGS = -Wall -Wextra -Werror -I$(MLX_DIR) -I$(HEADER_DIR)
 FLAGS += -I$(LIBFT_PATH)
-# FLAGS += -g -fsanitize=address // roi
+# FLAGS += -g -fsanitize=address
 RM = rm -rf
 SILENT = @
 
@@ -43,11 +43,7 @@ MPATH_SRCS = 	cub3d.c			\
 				map_rewrite.c	\
 				count_tabs.c	\
 				errors_func.c	
-# utils.c			\
-# utils2.c		\
-#  get_next_line.c	\
-# ft_split.c 		\
-MPATH_DIR 	= sourse/
+
 MPATH =  $(addprefix $(MPATH_DIR), $(MPATH_SRCS))
 OBJ_M = $(MPATH:.c=.o)
 
@@ -58,19 +54,18 @@ MLX_DIR = mlx
 MLX_LIBS = -L$(MLX_DIR) -lmlx -lXext -lX11 -lm
 
 # Rule to create .o files from .c files
-$(MPATH_DIR)%.o: $(MPATH_DIR)%.c $(HEADER) Makefile
+$(MPATH_DIR)%.o: $(MPATH_DIR)%.c $(HEADER) makefile
 		$(SILENT)$(CC) $(FLAGS) -c $< -o $@
 
-# Rule to link .o files into the final executable
-# $(NAME): $(OBJ_M)
-$(NAME): $(OBJ_M) $(LIB)	# 1031 roi
-		$(SILENT)$(CC) $(OBJ_M) $(MLX_LIBS) $(LIBFT_FLAGS) -o $(NAME)
+$(NAME): $(OBJ_M) $(LIB)
+# Timos debugging 11.11.2024
+# echo $(OBJ_M)
+# echo $(LIB)
+		@ $(CC) $(OBJ_M) $(MLX_LIBS) $(LIBFT_FLAGS) -o $(NAME)
 		@echo "$(GREEN)$(BOLD)\n\n\t\t\t$(NAME) created!\n\n$(DEFAULT)"
-# @$(CC) $(OBJ_M) $(MLX_LIBS) -o $(NAME)
 
-$(LIB):								# 1031 roi
+$(LIB):
 	@ make -C $(LIBFT_PATH) --silent all bonus
-	
 
 # Default rule to build the project
 all: $(NAME)
@@ -80,7 +75,6 @@ clean:
 	$(SILENT) $(RM) $(OBJ_M)
 	$(SILENT) make -C $(LIBFT_PATH) --silent clean
 	@echo "\t\t$(YELLOW)$(BOLD)  Object files deleted!$(DEFAULT)"
-#	make -C $(LIB_PATH) all bonus clean
 
 # Rule to remove object files and executable
 fclean: clean
